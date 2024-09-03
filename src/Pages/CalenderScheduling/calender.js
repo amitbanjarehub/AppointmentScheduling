@@ -1,9 +1,10 @@
-
 import React, { useState } from "react";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
-import { Stack, Button, Box, Typography } from "@mui/material";
+import { Stack, Button, Box, Typography, IconButton } from "@mui/material";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 export default function BasicDateCalendar({ onNextClick }) {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -20,29 +21,86 @@ export default function BasicDateCalendar({ onNextClick }) {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <Stack direction="row" spacing={4} sx={{ width: "100%" }}>
+      <Stack
+        direction="row"
+        spacing={4}
+        sx={{ width: "100%", marginTop: "20px" }}
+      >
         <DateCalendar
           sx={{
             border: "2px solid red",
-            width: "50%",
-            height: "800px",
-            "& .MuiPickersCalendarHeader-root": {
-              height: "15%", // Header height
+            width: "100%",
+            height: "500px",
+            maxHeight: "800px",
+
+            "& .MuiDayCalendar-weekContainer": {
+              marginBottom: "28px",
             },
-            "& .MuiDayCalendar-root": {
-              height: "85%", // Calendar days height
-            },
-            "& .MuiTypography-root": {
-              fontSize: "1.2rem", // Day names (S, M, T, etc.)
-            },
+
             "& .MuiPickersDay-root": {
-              fontSize: "1.5rem", // Date numbers (1, 2, 3, etc.)
+              margin: "0 16px",
+              fontSize: "1.5rem",
+            },
+
+            // calender header
+            "& .MuiPickersCalendarHeader-root": {
+              border: "2px solid blue",
+              height: "15%",
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "0 16px",
+            },
+            // calender month year header
+            "& .MuiPickersCalendarHeader-label": {
+              border: "2px solid green",
+              fontSize: "1.2rem",
+              fontWeight: "500",
+              color: "black",
+            },
+            // calender arrow header
+            "& .MuiPickersArrowSwitcher-root": {
+              border: "2px solid green",
+              display: "flex",
+            },
+            "& .MuiPickersCalendarHeader-switchViewButton": {
+              display: "none",
+            },
+
+            //calender body day and date
+            "& .MuiDayCalendar-root": {
+              border: "2px solid blue",
+              height: "100%",
+
+            },
+
+            //calender day typography
+            "& .MuiTypography-root": {
+              border: "2px solid blue",
+
+              fontSize: "1.2rem",
+              marginRight: "20px",
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+            },
+
+            "& .MuiPickersArrowSwitcher-spacer": {
+              display: "none",
+            },
+            "& .MuiPickersArrowSwitcher-button": {
+              padding: "8px",
+              margin: "0 8px",
             },
           }}
+          leftArrowIcon={<ArrowBackIosIcon />}
+          rightArrowIcon={<ArrowForwardIosIcon />}
           onChange={handleDateChange}
         />
         {selectedDate && (
-          <Box sx={{ width: "50%" }}>
+          <Box sx={{ marginLeft: "40px" }}>
             <Typography variant="h6" gutterBottom>
               Select a Time
             </Typography>

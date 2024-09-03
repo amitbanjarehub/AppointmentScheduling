@@ -114,10 +114,9 @@ const App = () => {
             height: { xl: "100%", lg: "100%", sm: "100%", xs: "100%" },
             width: { xl: "60%", lg: "100%", sm: "100%", xs: "100%" },
             border: "1px solid gray",
+          
           }}
         >
-          
-
           {showAppointmentForm ? (
             <AppointmentForm />
           ) : (
@@ -136,18 +135,9 @@ const App = () => {
               </Typography>
 
               {/* <BasicDateCalendar onNextClick={handleShowAppointmentForm} /> */}
-              <Stack
-                sx={{
-                  border: "1px solid red",
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Calendar onNextClick={handleShowAppointmentForm}/>
-              </Stack>
+              <Calendar />
+           
+             
             </>
           )}
         </Stack>
