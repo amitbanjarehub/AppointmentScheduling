@@ -24,31 +24,15 @@
 }
 
 .calendar-dates {
-  /* display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  text-align: center; */
 
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   text-align: center;
   row-gap: 20px; /* Row ke beech ka gap increase karne ke liye */
-  /* grid-gap: 10px;  /* Agar aap overall grid gap ko control karna chahte hain, to is property ka use kar sakte hain */
+ 
 }
 
 .calendar-date {
-  /* padding: 0;
-  padding-top: "10px";
-  margin: 5px 0;
-  cursor: pointer;
-  border-radius: 50%;
-  color: rgb(0, 105, 255);
-  font-weight: bold; */
-
-  /* width: 30px; 
-  height: 30px; 
-  border-radius: 50%;
-  background-color: rgb(238 245 255);
-  text-align: center; */
 
   padding: 0;
   margin: 5px 0;
@@ -64,8 +48,7 @@
 }
 
 .calendar-date.selected {
-  /* background-color: #5f88ff;
-    color: white; */
+ 
 
   background-color: #5f88ff; 
   color: white;

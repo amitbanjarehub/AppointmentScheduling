@@ -1,5 +1,3 @@
-
-
 import React, { useState } from "react";
 import "./style.css";
 import { PiLessThanBold, PiGreaterThanBold } from "react-icons/pi";
@@ -81,149 +79,158 @@ const Calendar = ({ onNextClick }) => {
   };
 
   return (
-    <div
-      className="calendar-container"
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        transition: "width 0.3s ease",
-        width: showTimeSlots ? "100%" : "90%",
-        marginBottom: "200px",
-      }}
-    >
+    <>
       <div
-        className="calendar"
+        className="calendar-container"
         style={{
-          height: "100%",
-          width: "100%",
+          display: "flex",
+          justifyContent: "space-between",
           transition: "width 0.3s ease",
+          width: showTimeSlots ? "100%" : "90%",
+          marginBottom: "200px",
+        //   border: "1px solid red",
         }}
       >
-        <Stack
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
+        <div
+          className="calendar"
+          style={{
+            height: "100%",
+            width: "100%",
+            transition: "width 0.3s ease",
           }}
         >
           <Stack
-            className="calendar-header"
             sx={{
-              marginBottom: "20px",
               display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
+              flexDirection: "column",
+              justifyContent: "center",
               alignItems: "center",
-              width: {
-                xl: "40%",
-                lg: "40%",
-                md: "40%",
-                sm: "100%",
-                xs: "100%",
-              },
             }}
           >
-            <button onClick={prevMonth}>
-              <PiLessThanBold />
-            </button>
-            <span>
-              {new Date(currentYear, currentMonth).toLocaleString("default", {
-                month: "long",
-              })}{" "}
-              {currentYear}
-            </span>
-            <button onClick={nextMonth}>
-              <PiGreaterThanBold />
-            </button>
+            <Stack
+              className="calendar-header"
+              sx={{
+                marginBottom: "20px",
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+                width: {
+                  xl: "40%",
+                  lg: "40%",
+                  md: "40%",
+                  sm: "100%",
+                  xs: "100%",
+                },
+              }}
+            >
+              <button onClick={prevMonth}>
+                <PiLessThanBold />
+              </button>
+              <span>
+                {new Date(currentYear, currentMonth).toLocaleString("default", {
+                  month: "long",
+                })}{" "}
+                {currentYear}
+              </span>
+              <button onClick={nextMonth}>
+                <PiGreaterThanBold />
+              </button>
+            </Stack>
           </Stack>
-        </Stack>
-        <div className="calendar-body">
-          <div className="calendar-days">
-            {daysOfWeek.map((day, index) => (
-              <div key={index} className="calendar-day-name">
-                {day}
-              </div>
-            ))}
-          </div>
-          <div className="calendar-dates">
-            {getDaysArray().map((date, index) => (
-              <div
-                key={index}
-                className={`calendar-date ${
-                  date ? (date === selectedDate ? "selected" : "") : "blank"
-                } ${
-                  date && (isPastDate(date) || isSunday(date)) ? "gray" : ""
-                }`}
-                onClick={() => date && handleDateClick(date)}
-              >
-                {date}
-              </div>
-            ))}
+          <div className="calendar-body">
+            <div className="calendar-days">
+              {daysOfWeek.map((day, index) => (
+                <div key={index} className="calendar-day-name">
+                  {day}
+                </div>
+              ))}
+            </div>
+            <div className="calendar-dates">
+              {getDaysArray().map((date, index) => (
+                <div
+                  key={index}
+                  className={`calendar-date ${
+                    date ? (date === selectedDate ? "selected" : "") : "blank"
+                  } ${
+                    date && (isPastDate(date) || isSunday(date)) ? "gray" : ""
+                  }`}
+                  onClick={() => date && handleDateClick(date)}
+                >
+                  {date}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
 
-      {showTimeSlots && (
-        <div
-          className="time-slots"
-          style={{
-            width: "40%",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            borderLeft: "1px solid lightgray",
-            paddingLeft: "20px",
-            height: "400px",
-            overflowY: "auto",
-          }}
-        >
-          <h3>
-            {new Date(currentYear, currentMonth, selectedDate).toLocaleString(
-              "default",
-              { weekday: "long", month: "long", day: "numeric" }
-            )}
-          </h3>
-          <div className="time-slot-buttons">
-            {timeSlots.map((time, index) => (
-              <div key={index} style={{ width: "80%", marginBottom: "10px" }}>
-                {selectedTimeSlot === time ? (
-                  <Stack direction="row" spacing={2}>
-                    <Typography
-                      sx={{
-                        backgroundColor: "gray",
-                        color: "white",
-                        textAlign: "center",
-                        borderRadius: "4px",
-                      }}
-                    >
-                      {selectedTimeSlot}
-                    </Typography>
+        {showTimeSlots && (
+          <div
+            className="time-slots"
+            style={{
+              width: "40%",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              borderLeft: "1px solid lightgray",
+              paddingLeft: "20px",
+              // height: "400px",
+              // overflowY: "auto",
+            }}
+          >
+            <h3>
+              {new Date(currentYear, currentMonth, selectedDate).toLocaleString(
+                "default",
+                { weekday: "long", month: "long", day: "numeric" }
+              )}
+            </h3>
+            <div
+              className="time-slot-buttons"
+              style={{
+                height: "400px",
+                overflowY: "auto",
+              }}
+            >
+              {timeSlots.map((time, index) => (
+                <div key={index} style={{ width: "80%", marginBottom: "10px" }}>
+                  {selectedTimeSlot === time ? (
+                    <Stack direction="row" spacing={2}>
+                      <Typography
+                        sx={{
+                          backgroundColor: "gray",
+                          color: "white",
+                          textAlign: "center",
+                          borderRadius: "4px",
+                        }}
+                      >
+                        {selectedTimeSlot}
+                      </Typography>
+                      <Button
+                        variant="contained"
+                        size="small"
+                        onClick={onNextClick}
+                      >
+                        Next
+                      </Button>
+                    </Stack>
+                  ) : (
                     <Button
-                      variant="contained"
-                      size="small"
-                      onClick={onNextClick}
+                      variant="outlined"
+                      sx={{
+                        width: "100%",
+                      }}
+                      onClick={() => handleTimeSlotClick(time)}
                     >
-                      Next
+                      {time}
                     </Button>
-                  </Stack>
-                ) : (
-                  <Button
-                    variant="outlined"
-                    sx={{
-                      width: "100%",
-                    }}
-                    onClick={() => handleTimeSlotClick(time)}
-                  >
-                    {time}
-                  </Button>
-                )}
-              </div>
-            ))}
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 };
 

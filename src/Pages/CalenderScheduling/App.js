@@ -135,10 +135,10 @@ const App = () => {
                 Select a Date & Time
               </Typography>
 
-              {/* <BasicDateCalendar onNextClick={handleShowAppointmentForm} /> */}
+             
               <Stack
                 sx={{
-                  border: "1px solid red",
+                  // border: "1px solid red",
                   height: "100%",
                   display: "flex",
                   flexDirection: "row",
