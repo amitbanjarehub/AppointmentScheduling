@@ -36,26 +36,38 @@
 }
 
 .calendar-date {
-  /* padding: 10px 0; */
-  padding: 0;
+  /* padding: 0;
   padding-top: "10px";
   margin: 5px 0;
   cursor: pointer;
   border-radius: 50%;
-  color: rgb(0, 105, 255); /* Default color for future dates */
-  font-weight: bold;
+  color: rgb(0, 105, 255);
+  font-weight: bold; */
+
   /* width: 30px; 
   height: 30px; 
   border-radius: 50%;
   background-color: rgb(238 245 255);
   text-align: center; */
+
+  padding: 0;
+  margin: 5px 0;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px; /* Circular shape ke liye */
+  height: 30px; /* Circular shape ke liye */
+  border-radius: 50%; /* Circle banane ke liye */
+  margin: 0 auto;
 }
 
 .calendar-date.selected {
   /* background-color: #5f88ff;
     color: white; */
 
-  background-color: #5f88ff;
+  background-color: #5f88ff; 
   color: white;
   width: 30px; /* Circular shape ke liye */
   height: 30px; /* Circular shape ke liye */
@@ -72,5 +84,11 @@
 }
 
 .calendar-date.gray {
-    color: gray; /* Color for past dates and Sundays */
-  }
+  background-color: white; /* Background color for past dates and Sundays */
+  color: gray; /* Color for past dates and Sundays */
+}
+
+.calendar-date:not(.gray):not(.selected) {
+  background-color: #dce4fc; /* Available date background color */
+  color: rgb(0, 105, 255); /* Available date text color */
+}
