@@ -9,6 +9,10 @@ import {
   Collapse,
   Switch,
   Typography,
+  Button,
+  Popover,
+  ClickAwayListener,
+  Box,
 } from "@mui/material";
 import { ExpandLess, ExpandMore, Menu as MenuIcon } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,6 +22,7 @@ import AccessibilityIcon from "@mui/icons-material/Accessibility";
 import Logo from "./canlendlylogo.png";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import AddIcon from "@mui/icons-material/Add";
 
 // Array for menu items
 const menuItems = [
@@ -54,6 +59,7 @@ const menuItems = [
 const Sidebar = () => {
   const [openSubMenu, setOpenSubMenu] = useState({});
   const [arrowOpen, setArrowOpen] = useState(true);
+  const [anchorEl, setAnchorEl] = useState(null);
   const dispatch = useDispatch();
   const isOpen = useSelector((state) => state.sidebar.isOpen);
   const navigate = useNavigate();
@@ -77,16 +83,27 @@ const Sidebar = () => {
     }
   };
 
+  const handleClickCreate = (event) => {
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+  };
+
+  const handleClickAway = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
+
   return (
     <Drawer
       variant="permanent"
       anchor="left"
       open={isOpen}
       sx={{
-        width: isOpen ? "240px" : "80px",
+        width: isOpen ? "260px" : "80px",
         flexShrink: 0,
         "& .MuiDrawer-paper": {
-          width: isOpen ? "240px" : "80px",
+          width: isOpen ? "260px" : "80px",
           transition: "width 0.3s",
           overflowX: "hidden",
         },
@@ -97,7 +114,7 @@ const Sidebar = () => {
         style={{
           display: "flex",
           justifyContent: "space-between",
-          padding: "10px",
+          padding: "20px",
         }}
       >
         {isOpen && (
@@ -121,6 +138,79 @@ const Sidebar = () => {
           )}
         </IconButton>
       </div>
+
+      <ClickAwayListener onClickAway={handleClickAway}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Button
+            variant="contained"
+            sx={{
+              width: "200px",
+              height: "46px",
+              borderRadius: "36px",
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "rgb(0 105 255)",
+              color: "white",            
+            }}
+            onClick={handleClickCreate}
+          >
+            <AddIcon sx={{ marginRight: "8px" }} />
+            Create
+          </Button>
+          <Popover
+            id={id}
+            open={open}
+            anchorEl={anchorEl}
+            onClose={handleClickAway}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "center",
+            }}
+            transformOrigin={{
+              vertical: -10,
+              horizontal: "center",
+            }}
+
+           
+          >
+            {/* Box Content that opens below the button */}
+            <Box
+              sx={{
+                p: 2,
+                width: "192px",
+                height: "300px",
+                // border: "1px solid red",
+              }}
+            >
+              <Typography variant="body1" fontWeight={"bold"}>Event type</Typography>
+              <Typography variant="body2">
+                Create a new template for your regularly scheduled events.
+              </Typography>
+              <Typography variant="body1" sx={{ mt: 2 }} fontWeight={"bold"}>
+                One-off meeting
+              </Typography>
+              <Typography variant="body2">
+                Invite someone to pick a time to meet with you.
+              </Typography>
+              <Typography variant="body1" sx={{ mt: 2 }} fontWeight={"bold"}>
+                Meeting poll
+              </Typography>
+              <Typography variant="body2">
+                Schedule a group meeting after offering times for a vote.
+              </Typography>
+            </Box>
+          </Popover>
+        </div>
+      </ClickAwayListener>
 
       {/* Menu List */}
       <List>
