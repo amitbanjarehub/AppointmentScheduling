@@ -4,11 +4,12 @@ import "./index.css";
 import App from "./Pages/CalenderScheduling/App";
 import AppointmentForm from "./Pages/CalenderScheduling/AppointmentForm";
 import MainApp from "./MainApp";
-
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>   
-      <MainApp />
-  </React.StrictMode>
+  <Provider store={store}>
+    <MainApp />
+  </Provider>
 );
