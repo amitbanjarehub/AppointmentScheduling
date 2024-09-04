@@ -25,10 +25,10 @@ const AppointmentForm = () => {
     setGuestEmails(guestEmails.filter((email) => email !== emailToDelete));
   };
 
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate(); 
 
   const handleScheduleEvent = () => {
-    navigate("/submit-response"); // Navigate to SubmitResponse component
+    navigate("/submit-response"); 
   };
 
   return (

@@ -1,22 +1,19 @@
 import { Stack, Box, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { MdOutlineWatchLater } from "react-icons/md";
-import AppointmentForm from "./AppointmentForm"; // AppointmentForm component
-import BasicDateCalendar from "./calender";
+import AppointmentForm from "./AppointmentForm"; 
 import { BiArrowBack } from "react-icons/bi";
 import Calendar from "../calender/Calendar";
 
-// import BasicDateCalendar from "./customCalender";
 
 const App = () => {
   const [showAppointmentForm, setShowAppointmentForm] = useState(false); // New state
 
-  // Function to handle the 'Next' button click
   const handleShowAppointmentForm = () => {
     setShowAppointmentForm(true);
   };
 
-  // Function to handle the 'Back' arrow click
+  
   const handleBackClick = () => {
     setShowAppointmentForm(false);
   };
@@ -65,7 +62,7 @@ const App = () => {
                     paddingTop: "20px",
                     cursor: "pointer",
                   }}
-                  onClick={handleBackClick} // Add onClick to handle back button click
+                  onClick={handleBackClick} 
                 >
                   <BiArrowBack size={20} />
                 </Stack>
@@ -137,8 +134,7 @@ const App = () => {
 
              
               <Stack
-                sx={{
-                  // border: "1px solid red",
+                sx={{                 
                   height: "100%",
                   display: "flex",
                   flexDirection: "row",
