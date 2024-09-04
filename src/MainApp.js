@@ -4,11 +4,13 @@ import SubmitResponse from "./Pages/CalenderScheduling/SubmitResponse";
 import Layout from "./Pages/Layout/Layout";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 
+
+
 const MainApp = () => {
   return (
     <BrowserRouter>
       <Routes>
-      <Route path="/" element={<Dashboard />} />
+      <Route path="/" element={<Dashboard/>} />
         <Route path="/calender" element={<Layout />} />
         <Route path="/submit-response" element={<SubmitResponse />} />
       </Routes>
