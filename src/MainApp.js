@@ -6,6 +6,7 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import Categories from "./components/Categories";
 import Sidebar from "./components/Sidebar";
 import Dashboard1 from "./components/Dashboard";
+import EventType from "./Pages/Events/EventType";
 
 const MainApp = () => {
   return (
@@ -19,9 +20,10 @@ const MainApp = () => {
             <Route path="/calender" element={<Layout />} />
             <Route path="/submit-response" element={<SubmitResponse />} />
           </Routes>
-          
+
           <Routes>
             <Route path="/dashboard1" element={<Dashboard1 />} />
+            <Route path="/event-type" element={<EventType />} />
             <Route path="/categories" element={<Categories />} />
             <Route path="/orders" element={<Categories />} />
             <Route path="/customers" element={<Categories />} />

@@ -13,6 +13,7 @@ import {
   Popover,
   ClickAwayListener,
   Box,
+  Stack,
 } from "@mui/material";
 import { ExpandLess, ExpandMore, Menu as MenuIcon } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,36 +24,71 @@ import Logo from "./canlendlylogo.png";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import AddIcon from "@mui/icons-material/Add";
+import InsertLinkIcon from "@mui/icons-material/InsertLink";
+import Diversity3Icon from "@mui/icons-material/Diversity3";
+import AlarmOnIcon from "@mui/icons-material/AlarmOn";
+import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
+import SchemaIcon from "@mui/icons-material/Schema";
+import ManageHistoryIcon from "@mui/icons-material/ManageHistory";
+import RouteIcon from "@mui/icons-material/Route";
+import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
+import HelpIcon from "@mui/icons-material/Help";
 
 // Array for menu items
 const menuItems = [
   {
-    title: "Dashboard",
-    icon: <AccessibilityIcon />,
-    path: "/dashboard",
+    title: "Event types",
+    icon: <InsertLinkIcon sx={{ color: "black" }} />,
+    path: "/event-types",
   },
   {
-    title: "Products",
-    icon: <AccessibilityIcon />,
-    subMenu: [
-      { title: "Categories", icon: <AccessibilityIcon />, path: "/categories" },
-      { title: "Orders", icon: <AccessibilityIcon />, path: "/orders" },
-    ],
+    title: "Meetings",
+    icon: <Diversity3Icon sx={{ color: "black" }} />,
+    path: "/event-types",
   },
   {
-    title: "Customers",
-    icon: <AccessibilityIcon />,
+    title: "Availability",
+    icon: <AlarmOnIcon sx={{ color: "black" }} />,
     path: "/customers",
   },
   {
-    title: "Settings",
-    icon: <AccessibilityIcon />,
+    title: "Contacts",
+    icon: <ContactPhoneIcon sx={{ color: "black" }} />,
     path: "/settings",
   },
   {
-    title: "Dark Mode",
-    icon: <AccessibilityIcon />,
-    toggle: true,
+    title: "Workflows",
+    icon: <SchemaIcon sx={{ color: "black" }} />,
+  },
+  {
+    title: "Integration $ apps",
+    icon: <ManageHistoryIcon sx={{ color: "black" }} />,
+    path: "/settings",
+  },
+  {
+    title: "Routing",
+    icon: <RouteIcon sx={{ color: "black" }} />,
+    path: "/settings",
+  },
+];
+
+// Array for menu items
+const bottomMenuItems = [
+  {
+    title: "Upgrade plan",
+    icon: <MonetizationOnIcon sx={{ color: "black" }} />,
+    path: "/settings",
+  },
+  {
+    title: "Admin center",
+    icon: <ManageAccountsIcon sx={{ color: "black" }} />,
+    path: "/settings",
+  },
+  {
+    title: "Help",
+    icon: <HelpIcon sx={{ color: "black" }} />,
+    path: "/settings",
   },
 ];
 
@@ -94,6 +130,10 @@ const Sidebar = () => {
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
+  const handleEventType = () => {
+    navigate("/event-type");
+  };
+
   return (
     <Drawer
       variant="permanent"
@@ -102,169 +142,205 @@ const Sidebar = () => {
       sx={{
         width: isOpen ? "260px" : "80px",
         flexShrink: 0,
+
         "& .MuiDrawer-paper": {
           width: isOpen ? "260px" : "80px",
           transition: "width 0.3s",
           overflowX: "hidden",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
         },
       }}
     >
-      {/* Sidebar Header */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          padding: "20px",
-        }}
-      >
-        {isOpen && (
-          <img
-            src={Logo}
-            alt="logo"
-            style={{ height: "40px", width: "120px", marginLeft: "20px" }}
-          />
-        )}
-
-        <IconButton
-          onClick={() => {
-            dispatch(toggleSidebar());
-            handleArrow(arrowOpen);
-          }}
-        >
-          {arrowOpen ? (
-            <KeyboardDoubleArrowLeftIcon />
-          ) : (
-            <KeyboardDoubleArrowRightIcon />
-          )}
-        </IconButton>
-      </div>
-
-      <ClickAwayListener onClickAway={handleClickAway}>
+      <Box>
+        {/* Sidebar Header */}
         <div
           style={{
             display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
+            justifyContent: "space-between",
+            padding: "20px",
+            // border: "1px solid red",
           }}
         >
-          <Button
-            variant="contained"
-            sx={{
-              width: "200px",
-              height: "46px",
-              borderRadius: "36px",
+          {isOpen && (
+            <img
+              src={Logo}
+              alt="logo"
+              style={{ height: "40px", width: "120px", marginLeft: "20px" }}
+            />
+          )}
+
+          <IconButton
+            onClick={() => {
+              dispatch(toggleSidebar());
+              handleArrow(arrowOpen);
+            }}
+          >
+            {arrowOpen ? (
+              <KeyboardDoubleArrowLeftIcon />
+            ) : (
+              <KeyboardDoubleArrowRightIcon />
+            )}
+          </IconButton>
+        </div>
+
+        <ClickAwayListener onClickAway={handleClickAway}>
+          <div
+            style={{
               display: "flex",
               flexDirection: "row",
               justifyContent: "center",
               alignItems: "center",
-              backgroundColor: "rgb(0 105 255)",
-              color: "white",            
             }}
-            onClick={handleClickCreate}
           >
-            <AddIcon sx={{ marginRight: "8px" }} />
-            Create
-          </Button>
-          <Popover
-            id={id}
-            open={open}
-            anchorEl={anchorEl}
-            onClose={handleClickAway}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "center",
-            }}
-            transformOrigin={{
-              vertical: -10,
-              horizontal: "center",
-            }}
-
-           
-          >
-            {/* Box Content that opens below the button */}
-            <Box
+            <Button
+              variant="contained"
               sx={{
-                p: 2,
-                width: "192px",
-                height: "300px",
-                // border: "1px solid red",
+                width: "200px",
+                height: "46px",
+                borderRadius: "36px",
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: "rgb(0 105 255)",
+                color: "white",
+              }}
+              onClick={handleClickCreate}
+            >
+              <AddIcon sx={{ marginRight: "8px" }} />
+              Create
+            </Button>
+            <Popover
+              id={id}
+              open={open}
+              anchorEl={anchorEl}
+              onClose={handleClickAway}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "center",
+              }}
+              transformOrigin={{
+                vertical: -10,
+                horizontal: "center",
               }}
             >
-              <Typography variant="body1" fontWeight={"bold"}>Event type</Typography>
-              <Typography variant="body2">
-                Create a new template for your regularly scheduled events.
-              </Typography>
-              <Typography variant="body1" sx={{ mt: 2 }} fontWeight={"bold"}>
-                One-off meeting
-              </Typography>
-              <Typography variant="body2">
-                Invite someone to pick a time to meet with you.
-              </Typography>
-              <Typography variant="body1" sx={{ mt: 2 }} fontWeight={"bold"}>
-                Meeting poll
-              </Typography>
-              <Typography variant="body2">
-                Schedule a group meeting after offering times for a vote.
-              </Typography>
-            </Box>
-          </Popover>
-        </div>
-      </ClickAwayListener>
+              {/* Box Content that opens below the button */}
+              <Box
+                sx={{
+                  p: 2,
+                  width: "192px",
+                  height: "300px",
+                  // border: "1px solid red",
+                }}
+              >
+                <Stack onClick={() => handleEventType()}>
+                  <Typography variant="body1" fontWeight={"bold"}>
+                    Event type
+                  </Typography>
+                  <Typography variant="body2">
+                    Create a new template for your regularly scheduled events.
+                  </Typography>
+                </Stack>
+                <Stack>
+                  <Typography
+                    variant="body1"
+                    sx={{ mt: 2 }}
+                    fontWeight={"bold"}
+                  >
+                    One-off meeting
+                  </Typography>
+                  <Typography variant="body2">
+                    Invite someone to pick a time to meet with you.
+                  </Typography>
+                </Stack>
+                <Stack>
+                  <Typography
+                    variant="body1"
+                    sx={{ mt: 2 }}
+                    fontWeight={"bold"}
+                  >
+                    Meeting poll
+                  </Typography>
+                  <Typography variant="body2">
+                    Schedule a group meeting after offering times for a vote.
+                  </Typography>
+                </Stack>
+              </Box>
+            </Popover>
+          </div>
+        </ClickAwayListener>
 
-      {/* Menu List */}
-      <List>
-        {menuItems.map((menu, index) => (
-          <div key={index}>
+        {/* Menu List */}
+        <List sx={{ marginTop: "20px" }}>
+          {menuItems.map((menu, index) => (
+            <div key={index}>
+              <ListItem
+                button
+                onClick={() =>
+                  menu.subMenu
+                    ? handleSubMenuClick(index)
+                    : handleNavigation(menu.path)
+                }
+              >
+                <ListItemIcon>{menu.icon}</ListItemIcon>
+                {isOpen && (
+                  <ListItemText
+                    primary={menu.title}
+                    primaryTypographyProps={{ fontWeight: "bold" }}
+                  />
+                )}
+                {menu.subMenu && isOpen ? (
+                  openSubMenu[index] ? (
+                    <ExpandLess />
+                  ) : (
+                    <ExpandMore />
+                  )
+                ) : null}
+              </ListItem>
+
+              {/* SubMenu Handling */}
+              {menu.subMenu && (
+                <Collapse in={openSubMenu[index]} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    {menu.subMenu.map((subMenu, subIndex) => (
+                      <ListItem
+                        button
+                        key={subIndex}
+                        sx={{ pl: 4 }}
+                        onClick={() => handleNavigation(subMenu.path)} // Navigate to submenu path
+                      >
+                        <ListItemIcon>{subMenu.icon}</ListItemIcon>
+                        {isOpen && <ListItemText primary={subMenu.title} />}
+                      </ListItem>
+                    ))}
+                  </List>
+                </Collapse>
+              )}
+            </div>
+          ))}
+        </List>
+      </Box>
+      <Box sx={{ paddingBottom: "20px" }}>
+        <List>
+          {bottomMenuItems.map((menu, index) => (
             <ListItem
               button
-              onClick={() =>
-                menu.subMenu
-                  ? handleSubMenuClick(index)
-                  : handleNavigation(menu.path)
-              }
+              key={index}
+              onClick={() => handleNavigation(menu.path)}
             >
               <ListItemIcon>{menu.icon}</ListItemIcon>
-              {isOpen && <ListItemText primary={menu.title} />}
-              {menu.subMenu && isOpen ? (
-                openSubMenu[index] ? (
-                  <ExpandLess />
-                ) : (
-                  <ExpandMore />
-                )
-              ) : null}
+              {isOpen && (
+                <ListItemText
+                  primary={menu.title}
+                  primaryTypographyProps={{ fontWeight: "bold" }}
+                />
+              )}
             </ListItem>
-
-            {/* SubMenu Handling */}
-            {menu.subMenu && (
-              <Collapse in={openSubMenu[index]} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                  {menu.subMenu.map((subMenu, subIndex) => (
-                    <ListItem
-                      button
-                      key={subIndex}
-                      sx={{ pl: 4 }}
-                      onClick={() => handleNavigation(subMenu.path)} // Navigate to submenu path
-                    >
-                      <ListItemIcon>{subMenu.icon}</ListItemIcon>
-                      {isOpen && <ListItemText primary={subMenu.title} />}
-                    </ListItem>
-                  ))}
-                </List>
-              </Collapse>
-            )}
-
-            {/* Dark Mode Toggle */}
-            {menu.toggle && (
-              <ListItem>
-                <ListItemIcon>{menu.icon}</ListItemIcon>
-                {isOpen && <ListItemText primary={menu.title} />}
-                <Switch />
-              </ListItem>
-            )}
-          </div>
-        ))}
-      </List>
+          ))}
+        </List>
+      </Box>
     </Drawer>
   );
 };
