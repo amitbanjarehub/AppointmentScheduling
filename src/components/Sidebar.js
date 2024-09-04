@@ -1,5 +1,3 @@
-
-
 import React, { useState } from "react";
 import {
   Drawer,
@@ -15,9 +13,11 @@ import {
 import { ExpandLess, ExpandMore, Menu as MenuIcon } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "../redux/sidebarSlice";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import AccessibilityIcon from "@mui/icons-material/Accessibility";
 import Logo from "./canlendlylogo.png";
+import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 
 // Array for menu items
 const menuItems = [
@@ -47,17 +47,17 @@ const menuItems = [
   {
     title: "Dark Mode",
     icon: <AccessibilityIcon />,
-    toggle: true, 
+    toggle: true,
   },
 ];
 
 const Sidebar = () => {
   const [openSubMenu, setOpenSubMenu] = useState({});
+  const [arrowOpen, setArrowOpen] = useState(true);
   const dispatch = useDispatch();
   const isOpen = useSelector((state) => state.sidebar.isOpen);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
- 
   const handleSubMenuClick = (index) => {
     setOpenSubMenu((prevState) => ({
       ...prevState,
@@ -65,10 +65,15 @@ const Sidebar = () => {
     }));
   };
 
- 
   const handleNavigation = (path) => {
     if (path) {
-      navigate(path); 
+      navigate(path);
+    }
+  };
+
+  const handleArrow = (arrowOpen) => {
+    {
+      arrowOpen ? setArrowOpen(false) : setArrowOpen(true);
     }
   };
 
@@ -95,10 +100,26 @@ const Sidebar = () => {
           padding: "10px",
         }}
       >
-        <IconButton onClick={() => dispatch(toggleSidebar())}>
-          <MenuIcon />
+        {isOpen && (
+          <img
+            src={Logo}
+            alt="logo"
+            style={{ height: "40px", width: "120px", marginLeft: "20px" }}
+          />
+        )}
+
+        <IconButton
+          onClick={() => {
+            dispatch(toggleSidebar());
+            handleArrow(arrowOpen);
+          }}
+        >
+          {arrowOpen ? (
+            <KeyboardDoubleArrowLeftIcon />
+          ) : (
+            <KeyboardDoubleArrowRightIcon />
+          )}
         </IconButton>
-        {isOpen && <Typography variant="h6">SHOPPING</Typography>}
       </div>
 
       {/* Menu List */}
