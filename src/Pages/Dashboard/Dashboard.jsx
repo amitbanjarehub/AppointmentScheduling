@@ -14,6 +14,7 @@ import MultipleSelect from "../../components/selectbox/SeclectBox";
 import SearchField from "../../components/SearchBox/SearchBox";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import EventCalender from "../../components/EventScheduleCalender/EventCalender";
 
 const Dashboard = () => {
   return (
@@ -156,6 +157,8 @@ const Dashboard = () => {
           </Stack>
         </Box>
       </Card>
+
+      {/* <EventCalender /> */}
     </Stack>
   );
 };

@@ -7,6 +7,7 @@ import Categories from "./components/Categories";
 import Sidebar from "./components/Sidebar";
 import Dashboard1 from "./components/Dashboard";
 import EventType from "./Pages/Events/EventType";
+import EventCalender from "./components/EventScheduleCalender/EventCalender";
 
 const MainApp = () => {
   return (
@@ -28,6 +29,7 @@ const MainApp = () => {
             <Route path="/orders" element={<Categories />} />
             <Route path="/customers" element={<Categories />} />
             <Route path="/settings" element={<Categories />} />
+            <Route path="/event-calender" element={<EventCalender />} />
           </Routes>
         </div>
       </div>

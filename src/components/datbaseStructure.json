@@ -1,0 +1,63 @@
+{
+    "adminId": "admin123",
+    "availability": [
+      {
+        "date": "2024-09-05",
+        "minTime": "09:00",
+        "maxTime": "17:00",
+        "step": 15,
+        "breakDuration": 15,
+        "appointments": [
+          {
+            "userId": "user1",
+            "name": "Anil",
+            "time": "10:15"
+          },
+          {
+            "userId": "user2",
+            "name": "Anita",
+            "time": "11:30"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-06",
+        "minTime": "09:00",
+        "maxTime": "17:00",
+        "step": 30,
+        "breakDuration": 15,
+        "appointments": [
+          {
+            "userId": "user3",
+            "name": "Gita",
+            "time": "09:30"
+          },
+          {
+            "userId": "user4",
+            "name": "Babita",
+            "time": "13:30"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-07",
+        "minTime": "09:00",
+        "maxTime": "17:00",
+        "step": 60,
+        "breakDuration": 30,
+        "appointments": [
+          {
+            "userId": "user5",
+            "name": "Sita",
+            "time": "10:00"
+          },
+          {
+            "userId": "user6",
+            "name": "John",
+            "time": "12:30"
+          }
+        ]
+      }
+    ]
+  }
+  
