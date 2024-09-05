@@ -1,3 +1,5 @@
+
+
 import React, { useState } from "react";
 import {
   Button,
@@ -83,8 +85,6 @@ const questions = [
     correctAnswer: "C",
   },
 
-
-
   {
     id: 7,
     question: "Figured means...",
@@ -131,7 +131,7 @@ const questions = [
     },
     correctAnswer: "C",
   },
-  // Add more questions here in the same format (total 10 questions)
+  // Add more questions here (total 10 questions)
 ];
 
 const MCQExam = () => {
@@ -175,16 +175,23 @@ const MCQExam = () => {
   };
 
   return (
-    <Box sx={{ p: 4 }}>
+    <Box sx={{ p: { xs: 2, md: 4 } }}>
+      {" "}
+      {/* Padding adjusted for mobile */}
       {!submitted ? (
         <>
           {questions.map((q, index) => (
-            <Stack key={q.id} sx={{display: "flex", flexDirection: "cloumn", justifyContent: "left", marginBottom: "20px"}}>
-              <FormControl
-                component="fieldset"
-                
-                sx={{ mb: 3, border: "1px solid red" }}
-              >
+            <Stack
+              key={q.id}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "left",
+                marginBottom: "20px",
+                p: { xs: 2, md: 3 }, // Adjust padding for smaller screens
+              }}
+            >
+              <FormControl component="fieldset" sx={{ mb: 3 }}>
                 <FormLabel component="legend">
                   {index + 1}. {q.question}
                 </FormLabel>
@@ -195,11 +202,13 @@ const MCQExam = () => {
                 >
                   <Grid container spacing={2}>
                     {Object.entries(q.options).map(([key, value]) => (
-                      <Grid item xs={6} sm={3} key={key}>
+                      <Grid item xs={12} sm={6} key={key}>
+                        {" "}
+                        {/* Full width on mobile, half width on larger screens */}
                         <FormControlLabel
                           value={key}
                           control={<Radio />}
-                          label={value}
+                          label={`${key}) ${value}`}
                         />
                       </Grid>
                     ))}
@@ -208,12 +217,19 @@ const MCQExam = () => {
               </FormControl>
             </Stack>
           ))}
-          <Button variant="contained" onClick={handleSubmit}>
+          <Button
+            variant="contained"
+            onClick={handleSubmit}
+            sx={{
+              width: { xs: "100%", md: "auto" }, // Full width button on mobile
+              mt: { xs: 2, md: 0 },
+            }}
+          >
             Submit
           </Button>
         </>
       ) : (
-        <Box>
+        <Box sx={{ p: { xs: 2, md: 4 } }}>
           <Typography variant="h6">Result Summary</Typography>
           <Typography>Questions Attended: {result.attended}</Typography>
           <Typography>Questions Skipped: {result.skipped}</Typography>
