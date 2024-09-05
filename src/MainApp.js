@@ -8,6 +8,8 @@ import Sidebar from "./components/Sidebar";
 import Dashboard1 from "./components/Dashboard";
 import EventType from "./Pages/Events/EventType";
 import EventCalender from "./components/EventScheduleCalender/EventCalender";
+import MCQExam from "./Pages/test/Test";
+import CreateEvent from "./Pages/Events/CreateEvent/CreateEvent";
 
 const MainApp = () => {
   return (
@@ -30,6 +32,8 @@ const MainApp = () => {
             <Route path="/customers" element={<Categories />} />
             <Route path="/settings" element={<Categories />} />
             <Route path="/event-calender" element={<EventCalender />} />
+            <Route path="/exam" element={<MCQExam />} />
+            <Route path="/create-event/:eventType" element={<CreateEvent />} />
           </Routes>
         </div>
       </div>

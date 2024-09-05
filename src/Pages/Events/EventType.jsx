@@ -16,8 +16,15 @@ import OnetoOne from "./one_on_one.png";
 import Group from "./group.png";
 import Collective from "./collective.png";
 import RoundRobin from "./round_robin.png";
+import { useNavigate } from "react-router-dom";
 
 const EventType = () => {
+  const navigate = useNavigate();
+
+  const handleClick = (eventType) => {
+    navigate(`/create-event/${eventType}`);
+  };
+
   return (
     <Box sx={{ padding: "20px", maxWidth: "800px", margin: "0 auto" }}>
       {/* Back Button */}
@@ -43,24 +50,28 @@ const EventType = () => {
               title: "One-on-One",
               description: "One host with one invitee",
               details: "Good for: coffee chats, 1:1 interviews, etc.",
+              eventType: 1,
             },
             {
               img: Group,
               title: "Group",
               description: "One host with group of invitees",
               details: "Good for: webinars, online classes, etc.",
+              eventType: 2,
             },
             {
               img: Collective,
               title: "Collective",
               description: "More than one host with one invitee",
               details: "Good for: panel interviews, group sales calls, etc.",
+              eventType: 3,
             },
             {
               img: RoundRobin,
               title: "Round Robin",
               description: "One rotating host with one invitee",
               details: "Good for: distributing incoming sales leads",
+              eventType: 4,
             },
           ].map((event, index) => (
             <Grid item xs={12} key={index}>
@@ -72,12 +83,13 @@ const EventType = () => {
                   padding: "10px 20px",
                   borderRadius: "8px",
                   border: "1px solid #e0e0e0",
-                //   border: "1px solid red",
+                  border: "1px solid red",
                 }}
+                onClick={() => handleClick(event.eventType )}
               >
                 <Box
                   sx={{
-                    // border: "1px solid yellow",
+                    // border: "1px solid red",
                     display: "flex",
                     flexDirection: "row",
                     justifyContent: "space-between",
@@ -88,7 +100,7 @@ const EventType = () => {
                     sx={{
                       height: "100px",
                       width: "120px",
-                    //   border: "1px solid red",
+                      //   border: "1px solid red",
                       display: "flex",
                       flexDirection: "row",
                       justifyContent: "center",
