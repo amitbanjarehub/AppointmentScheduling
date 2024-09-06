@@ -1,0 +1,85 @@
+[
+  {
+    "formName": "One-to-One",
+    "formData": [
+      {
+        "type": "header",
+        "subtype": "h1",
+        "label": "Second Form",
+        "access": false
+      },
+      {
+        "type": "paragraph",
+        "subtype": "p",
+        "label": "This is a demonstration of Second formBuilder running in a React project.",
+        "access": false
+      },
+      {
+        "type": "text",
+        "required": false,
+        "label": "Full Name",
+        "placeholder": "Enter full name",
+        "className": "form-control",
+        "name": "name",
+        "access": false,
+        "subtype": "text"
+      },
+      {
+        "type": "text",
+        "subtype": "email",
+        "required": false,
+        "label": "Email",
+        "placeholder": "Enter email id",
+        "className": "form-control",
+        "name": "email",
+        "access": false
+      },
+      {
+        "type": "text",
+        "subtype": "tel",
+        "required": false,
+        "label": "Mobile No.",
+        "placeholder": "Enter mobile no.",
+        "className": "form-control",
+        "name": "mobile-no",
+        "access": false,
+        "maxlength": 10
+      },
+      {
+        "type": "select",
+        "required": false,
+        "label": "Gender",
+        "placeholder": "Choose gender",
+        "className": "form-control",
+        "name": "gender",
+        "access": false,
+        "multiple": false,
+        "values": [
+          { "label": "male", "value": "male", "selected": true },
+          { "label": "female", "value": "female", "selected": false },
+          { "label": "other", "value": "other", "selected": false }
+        ]
+      },
+      {
+        "type": "textarea",
+        "required": false,
+        "label": "Address",
+        "placeholder": "Enter your address",
+        "className": "form-control",
+        "name": "address",
+        "access": false,
+        "subtype": "textarea",
+        "rows": 3
+      },
+      {
+        "type": "button",
+        "label": "Submit",
+        "subtype": "button",
+        "className": "btn-primary btn",
+        "name": "submit",
+        "access": false,
+        "style": "primary"
+      }
+    ]
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "formName": "One-to-One",
+    "formData": [
+      {
+        "type": "header",
+        "subtype": "h4",
+        "label": "React Form Builder",
+        "access": false
+      },
+      {
+        "type": "paragraph",
+        "subtype": "p",
+        "label": "Demo form builder.",
+        "access": false
+      },
+      {
+        "type": "text",
+        "required": false,
+        "label": "Name",
+        "placeholder": "Enter your name.",
+        "className": "form-control",
+        "name": "name",
+        "access": false,
+        "subtype": "text"
+      },
+      {
+        "type": "text",
+        "subtype": "tel",
+        "required": false,
+        "label": "Mobile",
+        "placeholder": "Enter mobile no.",
+        "className": "form-control",
+        "name": "mobile",
+        "access": false,
+        "maxlength": 10
+      },
+      {
+        "type": "text",
+        "subtype": "email",
+        "required": false,
+        "label": "Email",
+        "placeholder": "Enter email",
+        "className": "form-control",
+        "name": "email",
+        "access": false
+      },
+      {
+        "type": "button",
+        "label": "Submit",
+        "subtype": "button",
+        "className": "btn-primary btn",
+        "name": "submit",
+        "access": false,
+        "style": "primary"
+      }
+    ]
+  }
+]
+
+
+

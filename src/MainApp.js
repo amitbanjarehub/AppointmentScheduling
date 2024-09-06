@@ -10,6 +10,9 @@ import EventType from "./Pages/Events/EventType";
 import EventCalender from "./components/EventScheduleCalender/EventCalender";
 import MCQExam from "./Pages/test/Test";
 import CreateEvent from "./Pages/Events/CreateEvent/CreateEvent";
+import FormBuilder from "./components/FormBuilder/FormBuilder";
+import CompletedForm from "./components/FormBuilder2/CompletedForm";
+import RenderForm from "./components/FormBuilder2/RenderForm ";
 
 const MainApp = () => {
   return (
@@ -34,6 +37,9 @@ const MainApp = () => {
             <Route path="/event-calender" element={<EventCalender />} />
             <Route path="/exam" element={<MCQExam />} />
             <Route path="/create-event/:eventType" element={<CreateEvent />} />
+            <Route path="/form-builder" element={<FormBuilder />} />
+            <Route path="/completed-form" element={<CompletedForm />} />
+            <Route path="/render-form" element={<RenderForm />} />
           </Routes>
         </div>
       </div>

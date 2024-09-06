@@ -1,0 +1,14 @@
+[
+  {
+    "type": "header",
+    "subtype": "h1",
+    "label": "formBuilder in React",
+    "access": false
+  },
+  {
+    "type": "paragraph",
+    "subtype": "p",
+    "label": "This is a demonstration of formBuilder running in a React project.",
+    "access": false
+  }
+]

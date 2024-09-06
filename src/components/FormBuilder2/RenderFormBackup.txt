@@ -1,0 +1,126 @@
+import { Button, TextField, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+
+const RenderForm = () => {
+  const [formData, setFormData] = useState(null);
+
+  useEffect(() => {
+    const fetchFormData = async () => {
+      const response = await fetch("http://localhost:5000/api/form_builder");
+      const data = await response.json();
+      setFormData(data[0]?.formData);
+    };
+
+    fetchFormData();
+  }, []);
+
+  console.log("formData:====>>", formData);
+
+  const formSchema = [
+    {
+      type: "header",
+      subtype: "h4",
+      label: "React Form Builder",
+      access: false,
+    },
+    {
+      type: "paragraph",
+      subtype: "p",
+      label: "Demo form builder.",
+      access: false,
+    },
+    {
+      type: "text",
+      required: false,
+      label: "Name",
+      placeholder: "Enter your name.",
+      className: "form-control",
+      name: "name",
+      access: false,
+      subtype: "text",
+    },
+    {
+      type: "text",
+      subtype: "tel",
+      required: false,
+      label: "Mobile",
+      placeholder: "Enter mobile no.",
+      className: "form-control",
+      name: "mobile",
+      access: false,
+      maxlength: 10,
+    },
+    {
+      type: "text",
+      subtype: "email",
+      required: false,
+      label: "Email",
+      placeholder: "Enter email",
+      className: "form-control",
+      name: "email",
+      access: false,
+    },
+    {
+      type: "button",
+      label: "Submit",
+      subtype: "button",
+      className: "btn-primary btn",
+      name: "submit",
+      access: false,
+      style: "primary",
+    },
+  ];
+
+  const renderFields = () => {
+    return formSchema.map((field, index) => {
+      switch (field.type) {
+        case "header":
+          return (
+            <Typography key={index} variant={field.subtype || "h6"}>
+              {field.label}
+            </Typography>
+          );
+        case "paragraph":
+          return (
+            <Typography key={index} paragraph>
+              {field.label}
+            </Typography>
+          );
+        case "text":
+          return (
+            <TextField
+              key={index}
+              type={field.subtype || "text"}
+              label={field.label}
+              placeholder={field.placeholder}
+              fullWidth
+              margin="normal"
+            />
+          );
+        case "button":
+          return (
+            <Button
+              key={index}
+              variant={field.style === "primary" ? "contained" : "outlined"}
+              color={field.style || "primary"}
+              type="submit"
+              fullWidth
+              sx={{ mt: 2 }}
+            >
+              {field.label}
+            </Button>
+          );
+        default:
+          return null;
+      }
+    });
+  };
+
+  return (
+    <div>
+      <form>{renderFields()}</form>
+    </div>
+  );
+};
+
+export default RenderForm;
