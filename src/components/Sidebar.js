@@ -21,6 +21,7 @@ import { toggleSidebar } from "../redux/sidebarSlice";
 import { useNavigate } from "react-router-dom";
 import AccessibilityIcon from "@mui/icons-material/Accessibility";
 import Logo from "./canlendlylogo.png";
+import Logo1 from "./companyLogo.png";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import AddIcon from "@mui/icons-material/Add";
@@ -164,11 +165,20 @@ const Sidebar = () => {
           }}
         >
           {isOpen && (
-            <img
-              src={Logo}
-              alt="logo"
-              style={{ height: "40px", width: "120px", marginLeft: "20px" }}
-            />
+            <Stack
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
+              <img
+                src={Logo1}
+                alt="logo"
+                style={{ height: "52px", width: "52px", marginLeft: "20px" }}
+              />
+              <Typography sx={{ fontSize: "32x", marginTop: "16px" }}>Vertex Suite</Typography>
+            </Stack>
           )}
 
           <IconButton

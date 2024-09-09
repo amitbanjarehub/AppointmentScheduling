@@ -14,8 +14,7 @@ const EventCalender = () => {
   const [availabilities, setAvailbility] = useState([]);
   const [calendarEvents, setCalendarEvents] = useState([]);
 
-  useEffect(() => {
-    // Fetch data from the backend
+  useEffect(() => {   
     const fetchAppointments = async () => {
       try {
         const response = await axios.get(
@@ -25,8 +24,8 @@ const EventCalender = () => {
         const response1 = await axios.get(
           "http://localhost:5000/api/availabilities"
         );
-        setAppointments(response?.data); // appointmentsArray1 data
-        setAvailbility(response1?.data[0]?.availability); // timeSlotsArray1 data
+        setAppointments(response?.data); 
+        setAvailbility(response1?.data[0]?.availability); 
       } catch (error) {
         console.error("Error fetching appointments:", error);
       }

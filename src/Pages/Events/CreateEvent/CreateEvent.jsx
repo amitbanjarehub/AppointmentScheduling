@@ -238,13 +238,16 @@ const CreateEvent = () => {
                     variant="h5"
                     sx={{ fontWeight: "bold", marginBottom: "10px" }}
                   >
-                    Event name here
+                    {eventName ? eventName : "Event name here"}
                   </Typography>
 
                   {/* Duration */}
                   <Stack direction="row" spacing={1} alignItems="center">
                     <FaCaretRight />
-                    <Typography variant="body1">30 min</Typography>
+                    <Typography variant="body1">
+                      {" "}
+                      {duration ? duration : "Duration here"}
+                    </Typography>
                   </Stack>
 
                   {/* Location */}
@@ -256,7 +259,9 @@ const CreateEvent = () => {
                   >
                     <FaCaretRight />
                     <Typography variant="body2" color="textSecondary">
-                      Add a location for it to show here
+                      {location && location.length > 0
+                        ? location.join(", ") // Joins array elements with a comma and space
+                        : "Add a location for it to show here"}
                     </Typography>
                   </Stack>
                 </Box>

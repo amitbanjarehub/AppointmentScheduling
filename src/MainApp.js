@@ -13,6 +13,7 @@ import CreateEvent from "./Pages/Events/CreateEvent/CreateEvent";
 import FormBuilder from "./components/FormBuilder/FormBuilder";
 import CompletedForm from "./components/FormBuilder2/CompletedForm";
 import RenderForm from "./components/FormBuilder2/RenderForm ";
+import FormBuilderComponent from "./components/FormBuilder/FormBuilderComponent";
 
 const MainApp = () => {
   return (
@@ -40,6 +41,10 @@ const MainApp = () => {
             <Route path="/form-builder" element={<FormBuilder />} />
             <Route path="/completed-form" element={<CompletedForm />} />
             <Route path="/render-form" element={<RenderForm />} />
+            <Route
+              path="/form-building-component"
+              element={<FormBuilderComponent />}
+            />
           </Routes>
         </div>
       </div>
