@@ -14,6 +14,7 @@ import FormBuilder from "./components/FormBuilder/FormBuilder";
 import CompletedForm from "./components/FormBuilder2/CompletedForm";
 import RenderForm from "./components/FormBuilder2/RenderForm ";
 import FormBuilderComponent from "./components/FormBuilder/FormBuilderComponent";
+import RenderFormComponent from "./components/FormBuilder/FormRenderComponent";
 
 const MainApp = () => {
   return (
@@ -44,7 +45,8 @@ const MainApp = () => {
             <Route
               path="/form-building-component"
               element={<FormBuilderComponent />}
-            />
+            />FormRenderComponent
+            <Route path="/render-form-component" element={<RenderFormComponent/>} />
           </Routes>
         </div>
       </div>
