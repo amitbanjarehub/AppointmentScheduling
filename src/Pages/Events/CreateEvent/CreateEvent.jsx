@@ -16,12 +16,13 @@ import {
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { FaCaretRight } from "react-icons/fa6";
+import axios from "axios";
 
 const CreateEvent = () => {
   const { eventType } = useParams();
 
   const [duration, setDuration] = useState("30 min");
-  const [location, setLocation] = useState("");
+  const [location, setLocation] = useState([]);
   const [eventName, setEventName] = useState("");
 
   const handleDurationChange = (event) => {
@@ -29,20 +30,44 @@ const CreateEvent = () => {
   };
 
   const handleLocationChange = (event) => {
-    setLocation(event.target.value);
+    setLocation(event.target.value); // Ensure it stores an array
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Here you can process form submission, like sending data to an API
-    console.log("Form Submitted", {
+
+    const creator_id = "Admin001";
+    const creator_name = "Admin";
+    const create_date = "2024-09-05T12:34:56Z";
+
+    const eventData = {
       eventName,
       duration,
       location,
       eventType,
-    });
-  };
+      creator_id,
+      creator_name,
+      create_date,
+    };
+    console.log("add_events:----->>>", eventData);
+    try {
+      // API request to save data in the database
+      const response = await axios.post(
+        "http://localhost:5000/api/add_events",
+        eventData
+      );
 
+      if (response.status === 200) {
+        console.log("Event successfully created:", response.data);
+        alert("Form submitted successfully!"); // Show alert on success
+      } else {
+        console.log("Something went wrong:", response.status);
+      }
+    } catch (error) {
+      console.error("Error while creating event:", error);
+      alert("Error while submitting the form."); // Show alert on failure
+    }
+  };
   return (
     <Stack>
       <Stack
@@ -144,9 +169,10 @@ const CreateEvent = () => {
                   <InputLabel id="location-label">Location</InputLabel>
                   <Select
                     labelId="location-label"
-                    value={location}
+                    value={location} // Value must be an array
                     onChange={handleLocationChange}
                     label="Location"
+                    multiple // Allow multiple selection
                   >
                     <MenuItem value="Phone call">Phone call</MenuItem>
                     <MenuItem value="Google meet">Google meet</MenuItem>
@@ -182,7 +208,7 @@ const CreateEvent = () => {
               width: "80%",
               height: "60%",
               margin: "0 auto",
-            //   border: "1px solid red",
+              //   border: "1px solid red",
             }}
           >
             {/* Preview Banner */}
