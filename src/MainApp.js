@@ -15,6 +15,8 @@ import CompletedForm from "./components/FormBuilder2/CompletedForm";
 import RenderForm from "./components/FormBuilder2/RenderForm ";
 import FormBuilderComponent from "./components/FormBuilder/FormBuilderComponent";
 import RenderFormComponent from "./components/FormBuilder/FormRenderComponent";
+import MergeFormBuildingRenderComponent from "./components/FormBuilder/MergeFormBuildingRenderComponent";
+import MergeFormBuildingRenderComponent1 from "./components/FormBulider-RenderComponent/MergeFormBuildingRenderComponent";
 
 const MainApp = () => {
   return (
@@ -45,8 +47,20 @@ const MainApp = () => {
             <Route
               path="/form-building-component"
               element={<FormBuilderComponent />}
-            />FormRenderComponent
-            <Route path="/render-form-component" element={<RenderFormComponent/>} />
+            />
+            FormRenderComponent
+            <Route
+              path="/render-form-component"
+              element={<RenderFormComponent />}
+            />
+            <Route
+              path="/merge-build-render"
+              element={<MergeFormBuildingRenderComponent />}
+            />
+            <Route
+              path="/form-build-render"
+              element={<MergeFormBuildingRenderComponent1 />}
+            />
           </Routes>
         </div>
       </div>

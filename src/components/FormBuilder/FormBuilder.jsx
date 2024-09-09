@@ -1,8 +1,6 @@
-
 import $ from "jquery";
 import React, { useEffect, useRef } from "react";
 import { Container, Typography, Paper, Box } from "@mui/material";
-
 
 window.jQuery = $;
 window.$ = $;
