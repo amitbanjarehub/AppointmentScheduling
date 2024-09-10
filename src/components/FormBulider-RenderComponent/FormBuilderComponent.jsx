@@ -95,9 +95,30 @@ const FormBuilderComponent = ({ onPreview }) => {
     }
   };
 
+  // const handlePreview = () => {
+  //   const data = formBuilderInstance.current.actions.getData("json");
+
+  //   // Parse data only once
+  //   const parsedData = JSON.parse(data).map((component) => {
+  //     // Handle checkboxes differently if needed
+  //     if (component.type === "checkbox-group") {
+  //       component.values = component.values.map((val) => ({
+  //         label: val.label,
+  //         value: val.value,
+  //         selected: val.selected || false,
+  //       }));
+  //     }
+  //     return component;
+  //   });
+
+  //   // Pass the parsed data directly to the preview
+  //   onPreview(parsedData);
+  // };
+
+
   const handlePreview = () => {
     const data = formBuilderInstance.current.actions.getData("json");
-
+  
     // Parse data only once
     const parsedData = JSON.parse(data).map((component) => {
       // Handle checkboxes differently if needed
@@ -110,11 +131,13 @@ const FormBuilderComponent = ({ onPreview }) => {
       }
       return component;
     });
-
+  
     // Pass the parsed data directly to the preview
-    onPreview(parsedData);
+    setPreviewData(parsedData); // Set the parsed data in state
+    onPreview(parsedData); // Pass the parsed data to the parent component
   };
 
+  
   return (
     <Container maxWidth="md">
       <Box p={4}>

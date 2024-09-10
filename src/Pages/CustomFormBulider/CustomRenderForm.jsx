@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 
-const RenderFormComponent = ({ formSchema }) => {
+const CustomRenderForm = ({ formSchema }) => {
   const [formValues, setFormValues] = useState({});
 
   const handleInputChange = (e) => {
@@ -239,4 +239,4 @@ const RenderFormComponent = ({ formSchema }) => {
   );
 };
 
-export default RenderFormComponent;
+export default CustomRenderForm;
