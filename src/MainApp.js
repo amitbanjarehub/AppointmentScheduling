@@ -18,6 +18,7 @@ import RenderFormComponent from "./components/FormBuilder/FormRenderComponent";
 import MergeFormBuildingRenderComponent from "./components/FormBuilder/MergeFormBuildingRenderComponent";
 import MergeFormBuildingRenderComponent1 from "./components/FormBulider-RenderComponent/MergeFormBuildingRenderComponent";
 import CustomFormBuilder from "./Pages/CustomFormBulider/CustomFormBuilder";
+import CustomFormBuilderOriginal from "./components/FormBulider-RenderComponent/TestingFormBuilding/CustomFormBuilder";
 
 const MainApp = () => {
   return (
@@ -62,10 +63,13 @@ const MainApp = () => {
               path="/form-build-render"
               element={<MergeFormBuildingRenderComponent1 />}
             />
-            
             <Route
               path="/custom-form-builder"
               element={<CustomFormBuilder />}
+            />
+            <Route
+              path="/custom-form-builder-original"
+              element={<CustomFormBuilderOriginal />}
             />
           </Routes>
         </div>
