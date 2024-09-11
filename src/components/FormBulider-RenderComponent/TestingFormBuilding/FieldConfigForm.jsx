@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { Box, TextField, Checkbox, Button, FormControlLabel } from "@mui/material";
+import {
+  Box,
+  TextField,
+  Checkbox,
+  Button,
+  FormControlLabel,
+} from "@mui/material";
 
 const FieldConfigForm = ({ field, onSave, onCancel }) => {
   const [label, setLabel] = useState(field.label || "");
@@ -117,6 +123,48 @@ const FieldConfigForm = ({ field, onSave, onCancel }) => {
           label="Allow users to upload multiple files"
         />
       )}
+
+      {(field.type === "checkbox" ||
+        field.type === "radio" ||
+        field.type === "select") && (
+        <>
+          <Box mb={2}>
+            {options.map((option, index) => (
+              <Box key={index} display="flex" alignItems="center" mb={1}>
+                <TextField
+                  label="Option Label"
+                  variant="outlined"
+                  fullWidth
+                  value={option.label}
+                  onChange={(e) =>
+                    updateOption(index, {
+                      ...option,
+                      label: e.target.value,
+                    })
+                  }
+                  sx={{ mr: 1 }}
+                />
+                <TextField
+                  label="Option Value"
+                  variant="outlined"
+                  fullWidth
+                  value={option.value}
+                  onChange={(e) =>
+                    updateOption(index, {
+                      ...option,
+                      value: e.target.value,
+                    })
+                  }
+                />
+              </Box>
+            ))}
+            <Button onClick={addOption} variant="contained">
+              Add Option
+            </Button>
+          </Box>
+        </>
+      )}
+
       <Box mt={2}>
         <Button
           onClick={handleSubmit}

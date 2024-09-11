@@ -58,18 +58,58 @@ const RenderFormComponent = ({ formSchema }) => {
             </Typography>
           );
 
-        case "checkbox-group":
+        case "select":
+          return (
+            <FormControl fullWidth key={index} margin="normal">
+              <Typography variant="body1">{component.label}</Typography>
+              <select
+                name={component.label.toLowerCase()}
+                onChange={handleInputChange}
+                value={formValues[component.label.toLowerCase()] || ""}
+              >
+                {(component.values || []).map((option, idx) => (
+                  <option key={idx} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </FormControl>
+          );
+
+        case "radio":
           return (
             <FormControl key={index} component="fieldset" margin="normal">
               <Typography variant="body1" gutterBottom>
                 {component.label}
               </Typography>
-              {component.values.map((option, idx) => (
+              <RadioGroup
+                name={component.label.toLowerCase()}
+                onChange={handleInputChange}
+              >
+                {(component.values || []).map((option, idx) => (
+                  <FormControlLabel
+                    key={idx}
+                    value={option.value}
+                    control={<Radio />}
+                    label={option.label}
+                  />
+                ))}
+              </RadioGroup>
+            </FormControl>
+          );
+
+        case "checkbox":
+          return (
+            <FormControl key={index} component="fieldset" margin="normal">
+              <Typography variant="body1" gutterBottom>
+                {component.label}
+              </Typography>
+              {(component.values || []).map((option, idx) => (
                 <FormControlLabel
                   key={idx}
                   control={
                     <Checkbox
-                      checked={formValues[option.value] || false} // Handle the checkbox checked state
+                      checked={formValues[option.value] || false}
                       onChange={(e) =>
                         setFormValues({
                           ...formValues,
@@ -83,27 +123,7 @@ const RenderFormComponent = ({ formSchema }) => {
               ))}
             </FormControl>
           );
-        case "radio-group":
-          return (
-            <FormControl key={index} component="fieldset" margin="normal">
-              <Typography variant="body1" gutterBottom>
-                {component.label}
-              </Typography>
-              <RadioGroup
-                name={component.label.toLowerCase()}
-                onChange={handleInputChange}
-              >
-                {component.values.map((option, idx) => (
-                  <FormControlLabel
-                    key={idx}
-                    value={option.value}
-                    control={<Radio />}
-                    label={option.label}
-                  />
-                ))}
-              </RadioGroup>
-            </FormControl>
-          );
+
         case "text":
           return (
             <TextField
@@ -150,25 +170,6 @@ const RenderFormComponent = ({ formSchema }) => {
             />
           );
 
-        // Add support for Select dropdown
-        case "select":
-          return (
-            <FormControl fullWidth key={index} margin="normal">
-              <Typography variant="body1">{component.label}</Typography>
-              <select
-                name={component.label.toLowerCase()}
-                onChange={handleInputChange}
-                value={formValues[component.label.toLowerCase()] || ""}
-              >
-                {component.values.map((option, idx) => (
-                  <option key={idx} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            </FormControl>
-          );
-
         // Add support for TextArea
         case "textarea":
           return (
@@ -181,6 +182,37 @@ const RenderFormComponent = ({ formSchema }) => {
               margin="normal"
               multiline
               rows={4}
+              onChange={handleInputChange}
+              value={formValues[component.label.toLowerCase()] || ""}
+            />
+          );
+
+        case "file-upload":
+          return (
+            <TextField
+              key={index}
+              type="file"
+              label={component.label}
+              name={component.label.toLowerCase()}
+              fullWidth
+              margin="normal"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              onChange={handleInputChange}
+            />
+          );
+
+        // For number field
+        case "number":
+          return (
+            <TextField
+              key={index}
+              type="number"
+              label={component.label}
+              name={component.label.toLowerCase()}
+              fullWidth
+              margin="normal"
               onChange={handleInputChange}
               value={formValues[component.label.toLowerCase()] || ""}
             />
@@ -208,8 +240,8 @@ const RenderFormComponent = ({ formSchema }) => {
   return (
     <Container
       sx={{
-        height: "76%",
-        width: "90%",
+        height: "80vh", // Increase height
+        width: "100%", // Ensure it takes up the full width
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -217,8 +249,8 @@ const RenderFormComponent = ({ formSchema }) => {
     >
       <Box
         sx={{
-          width: "100%",
-          height: "92%",
+          width: "100%", // Full width for the form
+          height: "100%", // Full height for the form
           p: 3,
           bgcolor: "background.paper",
           borderRadius: 2,
@@ -229,7 +261,9 @@ const RenderFormComponent = ({ formSchema }) => {
         }}
       >
         <Box>
-          <Typography>Form preview:</Typography>
+        <Typography variant="h4" align="center" gutterBottom>
+           Form Preview Area
+          </Typography>
         </Box>
         <form onSubmit={handleSubmit} style={{ height: "100%", width: "100%" }}>
           {renderFields()}
