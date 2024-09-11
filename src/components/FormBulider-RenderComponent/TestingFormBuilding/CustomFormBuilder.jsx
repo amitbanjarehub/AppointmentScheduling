@@ -1,3 +1,4 @@
+
 import React, { useState, useRef } from "react";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -28,7 +29,7 @@ const fieldTypes = {
   NUMBER: "number",
 };
 
-// Custom hook for dragging and dropping fields in the form design area
+// Component for Draggable Form Field
 const DraggableFormField = ({ field, index, moveField, children }) => {
   const ref = useRef(null);
 
@@ -69,6 +70,7 @@ const DraggableFormField = ({ field, index, moveField, children }) => {
   );
 };
 
+// Component for Form Design Area
 const FormDesignArea = ({ onDrop, children, onRightClick }) => {
   const [, drop] = useDrop({
     accept: "field",
@@ -151,24 +153,80 @@ const CustomFormBuilder = () => {
     setFields(updatedFields);
   };
 
-  // Handle right-click to open the context menu at the mouse cursor position
   const handleRightClick = (event) => {
-    event.preventDefault(); // Prevent the default right-click menu
+    event.preventDefault();
     setMenuAnchor({
       mouseX: event.clientX - 2,
       mouseY: event.clientY - 4,
-    }); // Set the position of the custom context menu
+    });
   };
 
-  // Close context menu
   const handleCloseMenu = () => {
     setMenuAnchor(null);
   };
 
-  // Add field to form on clicking in the context menu
   const handleMenuItemClick = (fieldType) => {
     handleDrop({ type: fieldType, label: fieldType });
-    setMenuAnchor(null); // Close the menu after selecting a field
+    setMenuAnchor(null);
+  };
+
+  const handleSaveForm = async () => {
+    const formStructure = {
+      form_id: "form_001",
+      user_id: "user_001",
+      project_id: "project_001",
+      session_id: "session_001",
+      created_at: "2024-09-09T12:34:56Z",
+      last_modified: "2024-09-09T15:00:00Z",
+      last_modified_by: "user_002",
+      components: fields.map((component, index) => ({
+        user_id: "user_001",
+        session_id: "session_001",
+        project_id: "project_001",
+        component_id: `component_${index + 1}`,
+        component_type: component.type,
+        component_subtype: component.subtype || component.type,
+        form_id: "form_001",
+        created_at: "2024-09-09T12:35:00Z",
+        last_modified: "2024-09-09T13:00:00Z",
+        last_modified_by: "user_002",
+        formData: [
+          {
+            type: component.type,
+            subtype: component.subtype || component.type,
+            label: component.label,
+            placeholder: component.placeholder || "",
+            required: component.required || false,
+            values: component.values || [],
+            access: component.access || true,
+          },
+        ],
+      })),
+    };
+
+    console.log("Form Structure:", formStructure);
+
+    try {
+      const response = await fetch("http://localhost:5000/api/form_builder1", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify([formStructure]),
+      });
+
+      if (response.status === 201) {
+        const result = await response.json();
+        alert(result.message);
+        console.log("Saved form data:", result.forms);
+      } else {
+        alert("Error saving form.");
+        console.error("Error saving form:", response.statusText);
+      }
+    } catch (error) {
+      alert("Error saving form.");
+      console.error("Error:", error);
+    }
   };
 
   return (
@@ -255,7 +313,11 @@ const CustomFormBuilder = () => {
 
           {/* Buttons below the form design area */}
           <Box display="flex" mt={2}>
-            <Button variant="contained" color="primary">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleSaveForm} // Trigger handleSaveForm on click
+            >
               Save
             </Button>
             <Button
