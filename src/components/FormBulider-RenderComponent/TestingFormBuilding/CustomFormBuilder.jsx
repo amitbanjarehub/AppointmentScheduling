@@ -82,7 +82,7 @@ const FormDesignArea = ({ onDrop, children, onRightClick }) => {
       p={4}
       border="1px dashed gray"
       width="90%"
-      height="800px"
+      height="900px"
       overflow="auto"
       bgcolor="#f9f9f9"
     >
@@ -176,6 +176,10 @@ const CustomFormBuilder = () => {
       <Box display="flex" p={2}>
         {/* Left Panel: List of Fields */}
         <Box width="10%" p={2} border="1px solid gray">
+          <Typography variant="h4" align="center" gutterBottom>
+            Header 2
+          </Typography>
+
           <DraggableField type={fieldTypes.TEXT} label="Text Field" />
           <DraggableField type={fieldTypes.TEXTAREA} label="Text Area" />
           <DraggableField type={fieldTypes.PARAGRAPH} label="Paragraph" />
@@ -191,6 +195,10 @@ const CustomFormBuilder = () => {
 
         {/* Right Panel: Form Design Area */}
         <Box width="40%" p={2} border="1px solid gray">
+          <Typography variant="h4" align="center" gutterBottom>
+            Header 1
+          </Typography>
+
           <FormDesignArea onDrop={handleDrop} onRightClick={handleRightClick}>
             {fields.length === 0 ? (
               <Typography>
@@ -244,6 +252,20 @@ const CustomFormBuilder = () => {
               ))
             )}
           </FormDesignArea>
+
+          {/* Buttons below the form design area */}
+          <Box display="flex" mt={2}>
+            <Button variant="contained" color="primary">
+              Save
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              sx={{ marginLeft: "32px" }}
+            >
+              Preview
+            </Button>
+          </Box>
 
           {/* Context Menu for right-click action */}
           <Menu
