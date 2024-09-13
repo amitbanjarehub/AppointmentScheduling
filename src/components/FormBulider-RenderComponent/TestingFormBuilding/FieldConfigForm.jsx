@@ -45,7 +45,11 @@ const FieldConfigForm = ({ field, onSave, onCancel }) => {
       min,
       max,
       step,
-      options,
+      // options,
+      options: options.map((option) => ({
+        label: option.label,
+        value: option.value,
+      })), // Ensure options are passed here
       style,
     });
   };

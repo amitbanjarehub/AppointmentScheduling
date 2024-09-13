@@ -58,23 +58,71 @@ const RenderFormComponent = ({ formSchema }) => {
             </Typography>
           );
 
+        // case "select":
+        //   return (
+        //     <FormControl fullWidth key={index} margin="normal">
+        //       <Typography variant="body1">{component.label}</Typography>
+        //       <select
+        //         name={component.label.toLowerCase()}
+        //         onChange={handleInputChange}
+        //         value={formValues[component.label.toLowerCase()] || ""}
+        //       >
+        //         {(component.values || []).map((option, idx) => (
+        //           <option key={idx} value={option.value}>
+        //             {option.label}
+        //           </option>
+        //         ))}
+        //       </select>
+        //     </FormControl>
+        //   );
+
         case "select":
           return (
             <FormControl fullWidth key={index} margin="normal">
               <Typography variant="body1">{component.label}</Typography>
               <select
-                name={component.label.toLowerCase()}
+                name={component.name || component.label.toLowerCase()} // Ensure the name is set properly
                 onChange={handleInputChange}
-                value={formValues[component.label.toLowerCase()] || ""}
+                value={
+                  formValues[component.name || component.label.toLowerCase()] ||
+                  ""
+                } // Use name or label
               >
-                {(component.values || []).map((option, idx) => (
-                  <option key={idx} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
+                {component.options.map(
+                  (
+                    option,
+                    idx // Use options instead of values
+                  ) => (
+                    <option key={idx} value={option.value}>
+                      {option.label}
+                    </option>
+                  )
+                )}
               </select>
             </FormControl>
           );
+
+        // case "radio":
+        //   return (
+        //     <FormControl key={index} component="fieldset" margin="normal">
+        //       <Typography variant="body1" gutterBottom>
+        //         {component.label}
+        //       </Typography>
+        //       <RadioGroup
+        //         name={component.label.toLowerCase()}
+        //         onChange={handleInputChange}
+        //       >
+        //         {(component.values || []).map((option, idx) => (
+        //           <FormControlLabel
+        //             key={idx}
+        //             value={option.value}
+        //             control={<Radio />}
+        //             label={option.label}
+        //           />
+        //         ))}
+        //       </RadioGroup>
+        //     </FormControl>
+        //   );
 
         case "radio":
           return (
@@ -83,20 +131,51 @@ const RenderFormComponent = ({ formSchema }) => {
                 {component.label}
               </Typography>
               <RadioGroup
-                name={component.label.toLowerCase()}
+                name={component.name || component.label.toLowerCase()}
                 onChange={handleInputChange}
               >
-                {(component.values || []).map((option, idx) => (
-                  <FormControlLabel
-                    key={idx}
-                    value={option.value}
-                    control={<Radio />}
-                    label={option.label}
-                  />
-                ))}
+                {component.options.map(
+                  (
+                    option,
+                    idx // Use options instead of values
+                  ) => (
+                    <FormControlLabel
+                      key={idx}
+                      value={option.value}
+                      control={<Radio />}
+                      label={option.label}
+                    />
+                  )
+                )}
               </RadioGroup>
             </FormControl>
           );
+
+        // case "checkbox":
+        //   return (
+        //     <FormControl key={index} component="fieldset" margin="normal">
+        //       <Typography variant="body1" gutterBottom>
+        //         {component.label}
+        //       </Typography>
+        //       {(component.values || []).map((option, idx) => (
+        //         <FormControlLabel
+        //           key={idx}
+        //           control={
+        //             <Checkbox
+        //               checked={formValues[option.value] || false}
+        //               onChange={(e) =>
+        //                 setFormValues({
+        //                   ...formValues,
+        //                   [option.value]: e.target.checked,
+        //                 })
+        //               }
+        //             />
+        //           }
+        //           label={option.label}
+        //         />
+        //       ))}
+        //     </FormControl>
+        //   );
 
         case "checkbox":
           return (
@@ -104,23 +183,28 @@ const RenderFormComponent = ({ formSchema }) => {
               <Typography variant="body1" gutterBottom>
                 {component.label}
               </Typography>
-              {(component.values || []).map((option, idx) => (
-                <FormControlLabel
-                  key={idx}
-                  control={
-                    <Checkbox
-                      checked={formValues[option.value] || false}
-                      onChange={(e) =>
-                        setFormValues({
-                          ...formValues,
-                          [option.value]: e.target.checked,
-                        })
-                      }
-                    />
-                  }
-                  label={option.label}
-                />
-              ))}
+              {component.options.map(
+                (
+                  option,
+                  idx // Use options instead of values
+                ) => (
+                  <FormControlLabel
+                    key={idx}
+                    control={
+                      <Checkbox
+                        checked={formValues[option.value] || false}
+                        onChange={(e) =>
+                          setFormValues({
+                            ...formValues,
+                            [option.value]: e.target.checked,
+                          })
+                        }
+                      />
+                    }
+                    label={option.label}
+                  />
+                )
+              )}
             </FormControl>
           );
 
@@ -261,8 +345,8 @@ const RenderFormComponent = ({ formSchema }) => {
         }}
       >
         <Box>
-        <Typography variant="h4" align="center" gutterBottom>
-           Form Preview Area
+          <Typography variant="h4" align="center" gutterBottom>
+            Form Preview Area
           </Typography>
         </Box>
         <form onSubmit={handleSubmit} style={{ height: "100%", width: "100%" }}>
