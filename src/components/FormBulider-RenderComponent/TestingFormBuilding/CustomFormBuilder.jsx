@@ -170,38 +170,112 @@ const CustomFormBuilder = ({ onPreview }) => {
     setMenuAnchor(null);
   };
 
+  // const handleSaveForm = async () => {
+  //   const formStructure = {
+  //     form_id: "form_001",
+  //     user_id: "user_001",
+  //     project_id: "project_001",
+  //     session_id: "session_001",
+  //     created_at: "2024-09-09T12:34:56Z",
+  //     last_modified: "2024-09-09T15:00:00Z",
+  //     last_modified_by: "user_002",
+  //     components: fields.map((component, index) => ({
+  //       user_id: "user_001",
+  //       session_id: "session_001",
+  //       project_id: "project_001",
+  //       component_id: `component_${index + 1}`,
+  //       component_type: component.type,
+  //       component_subtype: component.subtype || component.type,
+  //       form_id: "form_001",
+  //       created_at: "2024-09-09T12:35:00Z",
+  //       last_modified: "2024-09-09T13:00:00Z",
+  //       last_modified_by: "user_002",
+  //       formData: [
+  //         {
+  //           type: component.type,
+  //           subtype: component.subtype || component.type,
+  //           label: component.label,
+  //           placeholder: component.placeholder || "",
+  //           required: component.required || false,
+  //           values: component.values || [],
+  //           access: component.access || true,
+  //         },
+  //       ],
+  //     })),
+  //   };
+
+  //   console.log("Form Structure:", formStructure);
+
+  //   try {
+  //     const response = await fetch("http://localhost:5000/api/form_builder1", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify([formStructure]),
+  //     });
+
+  //     if (response.status === 201) {
+  //       const result = await response.json();
+  //       alert(result.message);
+  //       console.log("Saved form data:", result.forms);
+  //     } else {
+  //       alert("Error saving form.");
+  //       console.error("Error saving form:", response.statusText);
+  //     }
+  //   } catch (error) {
+  //     alert("Error saving form.");
+  //     console.error("Error:", error);
+  //   }
+  // };
+
   const handleSaveForm = async () => {
     const formStructure = {
       form_id: "form_001",
       user_id: "user_001",
       project_id: "project_001",
       session_id: "session_001",
-      created_at: "2024-09-09T12:34:56Z",
-      last_modified: "2024-09-09T15:00:00Z",
+      created_at: new Date().toISOString(),
+      last_modified: new Date().toISOString(),
       last_modified_by: "user_002",
-      components: fields.map((component, index) => ({
-        user_id: "user_001",
-        session_id: "session_001",
-        project_id: "project_001",
-        component_id: `component_${index + 1}`,
-        component_type: component.type,
-        component_subtype: component.subtype || component.type,
-        form_id: "form_001",
-        created_at: "2024-09-09T12:35:00Z",
-        last_modified: "2024-09-09T13:00:00Z",
-        last_modified_by: "user_002",
-        formData: [
-          {
-            type: component.type,
-            subtype: component.subtype || component.type,
-            label: component.label,
-            placeholder: component.placeholder || "",
-            required: component.required || false,
-            values: component.values || [],
-            access: component.access || true,
-          },
-        ],
-      })),
+      components: fields.map((component, index) => {
+        const { type, subtype, label, placeholder, required, options, access } =
+          component;
+
+        // Process the values for checkbox-group, radio-group, and select fields
+        const processedOptions = (options || []).map((option) => ({
+          label: option.label,
+          value: option.value,
+          selected: option.selected || false,
+        }));
+
+        return {
+          user_id: "user_001",
+          session_id: "session_001",
+          project_id: "project_001",
+          component_id: `component_${index + 1}`,
+          component_type: type,
+          component_subtype: subtype || type,
+          form_id: "form_001",
+          created_at: new Date().toISOString(),
+          last_modified: new Date().toISOString(),
+          last_modified_by: "user_002",
+          formData: [
+            {
+              type: type,
+              subtype: subtype || type,
+              label: label,
+              placeholder: placeholder || "",
+              required: required || false,
+              values:
+                type === "checkbox" || type === "radio" || type === "select"
+                  ? processedOptions
+                  : [],
+              access: access || true,
+            },
+          ],
+        };
+      }),
     };
 
     console.log("Form Structure:", formStructure);
@@ -258,7 +332,7 @@ const CustomFormBuilder = ({ onPreview }) => {
         {/* Right Panel: Form Design Area */}
         <Box width="40%" p={2} border="1px solid gray">
           <Typography variant="h4" align="center" gutterBottom>
-           Form Design Area
+            Form Design Area
           </Typography>
 
           <FormDesignArea onDrop={handleDrop} onRightClick={handleRightClick}>
