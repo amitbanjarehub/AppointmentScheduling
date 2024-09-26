@@ -72,7 +72,7 @@ const CreateEvent = () => {
     <Stack>
       <Stack
         sx={{
-          border: "1px solid red",
+          // border: "1px solid red",
           height: "90vh",
           display: "flex",
           flexDirection: "row",
@@ -80,7 +80,7 @@ const CreateEvent = () => {
       >
         <Stack
           sx={{
-            border: "1px solid blue",
+            // border: "1px solid blue",
             height: "100%",
             width: "40%",
           }}
@@ -197,7 +197,7 @@ const CreateEvent = () => {
 
         <Stack
           sx={{
-            border: "1px solid blue",
+            // border: "1px solid blue",
             height: "100%",
             width: "60%",
           }}

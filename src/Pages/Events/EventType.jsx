@@ -83,7 +83,7 @@ const EventType = () => {
                   padding: "10px 20px",
                   borderRadius: "8px",
                   border: "1px solid #e0e0e0",
-                  border: "1px solid red",
+                  // border: "1px solid red",
                 }}
                 onClick={() => handleClick(event.eventType )}
               >
