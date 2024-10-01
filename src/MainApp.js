@@ -20,6 +20,8 @@ import MergeFormBuildingRenderComponent1 from "./components/FormBulider-RenderCo
 import CustomFormBuilder from "./Pages/CustomFormBulider/CustomFormBuilder";
 import CustomFormBuilderOriginal from "./components/FormBulider-RenderComponent/TestingFormBuilding/CustomFormBuilder";
 import CustomMergeformRender from "./components/FormBulider-RenderComponent/TestingFormBuilding/MergeformRender";
+import CalenderIntegation from "./Pages/CalenderScheduling/CalenderIntegation";
+import MainCalenderIntegration from "./Pages/CalenderScheduling/MainCalenderIntegration";
 
 const MainApp = () => {
   return (
@@ -36,6 +38,10 @@ const MainApp = () => {
 
           <Routes>
             <Route path="/dashboard1" element={<Dashboard1 />} />
+            <Route
+              path="/calender-integration"
+              element={<CalenderIntegation />}
+            />
             <Route path="/event-type" element={<EventType />} />
             <Route path="/categories" element={<Categories />} />
             <Route path="/orders" element={<Categories />} />
@@ -47,6 +53,10 @@ const MainApp = () => {
             <Route path="/form-builder" element={<FormBuilder />} />
             <Route path="/completed-form" element={<CompletedForm />} />
             <Route path="/render-form" element={<RenderForm />} />
+            <Route
+              path="/main-calender-integration"
+              element={<MainCalenderIntegration />}
+            />
             <Route
               path="/form-building-component"
               element={<FormBuilderComponent />}
@@ -73,7 +83,6 @@ const MainApp = () => {
               path="/custom-form-builder-original"
               element={<CustomFormBuilderOriginal />}
             /> */}
-            
             <Route
               path="/custom-formbuilder"
               element={<CustomMergeformRender />}

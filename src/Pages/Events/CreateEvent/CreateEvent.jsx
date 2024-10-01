@@ -17,10 +17,11 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { FaCaretRight } from "react-icons/fa6";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const CreateEvent = () => {
   const { eventType } = useParams();
-
+  const navigate = useNavigate();
   const [duration, setDuration] = useState("30 min");
   const [location, setLocation] = useState([]);
   const [eventName, setEventName] = useState("");
@@ -57,9 +58,10 @@ const CreateEvent = () => {
         eventData
       );
 
-      if (response.status === 200) {
+      if (response.status === 201) {
         console.log("Event successfully created:", response.data);
         alert("Form submitted successfully!"); // Show alert on success
+        navigate("/");
       } else {
         console.log("Something went wrong:", response.status);
       }

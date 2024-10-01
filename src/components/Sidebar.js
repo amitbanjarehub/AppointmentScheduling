@@ -7,7 +7,6 @@ import {
   ListItemText,
   IconButton,
   Collapse,
-  Switch,
   Typography,
   Button,
   Popover,
@@ -15,13 +14,10 @@ import {
   Box,
   Stack,
 } from "@mui/material";
-import { ExpandLess, ExpandMore, Menu as MenuIcon } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "../redux/sidebarSlice";
-import { useNavigate } from "react-router-dom";
-import AccessibilityIcon from "@mui/icons-material/Accessibility";
-import Logo from "./canlendlylogo.png";
 import Logo1 from "./companyLogo.png";
+import { useNavigate } from "react-router-dom";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import AddIcon from "@mui/icons-material/Add";
@@ -43,6 +39,7 @@ const menuItems = [
     icon: <InsertLinkIcon sx={{ color: "black" }} />,
     path: "/event-types",
   },
+
   {
     title: "Meetings",
     icon: <Diversity3Icon sx={{ color: "black" }} />,
@@ -63,7 +60,7 @@ const menuItems = [
     icon: <SchemaIcon sx={{ color: "black" }} />,
   },
   {
-    title: "Integration $ apps",
+    title: "Integration & Apps",
     icon: <ManageHistoryIcon sx={{ color: "black" }} />,
     path: "/settings",
   },
@@ -114,10 +111,8 @@ const Sidebar = () => {
     }
   };
 
-  const handleArrow = (arrowOpen) => {
-    {
-      arrowOpen ? setArrowOpen(false) : setArrowOpen(true);
-    }
+  const handleArrow = () => {
+    setArrowOpen((prevArrowOpen) => !prevArrowOpen);
   };
 
   const handleClickCreate = (event) => {
@@ -143,7 +138,6 @@ const Sidebar = () => {
       sx={{
         width: isOpen ? "260px" : "80px",
         flexShrink: 0,
-
         "& .MuiDrawer-paper": {
           width: isOpen ? "260px" : "80px",
           transition: "width 0.3s",
@@ -161,7 +155,6 @@ const Sidebar = () => {
             display: "flex",
             justifyContent: "space-between",
             padding: "20px",
-            // border: "1px solid red",
           }}
         >
           {isOpen && (
@@ -177,14 +170,16 @@ const Sidebar = () => {
                 alt="logo"
                 style={{ height: "52px", width: "52px", marginLeft: "20px" }}
               />
-              <Typography sx={{ fontSize: "32x", marginTop: "16px" }}>Vertex Suite</Typography>
+              <Typography sx={{ fontSize: "32x", marginTop: "16px" }}>
+                Vertex Suite
+              </Typography>
             </Stack>
           )}
 
           <IconButton
             onClick={() => {
               dispatch(toggleSidebar());
-              handleArrow(arrowOpen);
+              handleArrow();
             }}
           >
             {arrowOpen ? (
@@ -207,7 +202,7 @@ const Sidebar = () => {
             <Button
               variant="contained"
               sx={{
-                width: "200px",
+                width: isOpen ? "200px" : "50px", // Width adjusts based on sidebar state
                 height: "46px",
                 borderRadius: "36px",
                 display: "flex",
@@ -216,11 +211,14 @@ const Sidebar = () => {
                 alignItems: "center",
                 backgroundColor: "rgb(0 105 255)",
                 color: "white",
+                transition: "width 0.3s", // Smooth transition for width
               }}
               onClick={handleClickCreate}
             >
-              <AddIcon sx={{ marginRight: "8px" }} />
-              Create
+              <AddIcon />
+              {isOpen && (
+                <Typography sx={{ marginLeft: "8px" }}>Create</Typography>
+              )}
             </Button>
             <Popover
               id={id}
@@ -242,7 +240,6 @@ const Sidebar = () => {
                   p: 2,
                   width: "192px",
                   height: "300px",
-                  // border: "1px solid red",
                 }}
               >
                 <Stack onClick={() => handleEventType()}>
@@ -301,33 +298,7 @@ const Sidebar = () => {
                     primaryTypographyProps={{ fontWeight: "bold" }}
                   />
                 )}
-                {menu.subMenu && isOpen ? (
-                  openSubMenu[index] ? (
-                    <ExpandLess />
-                  ) : (
-                    <ExpandMore />
-                  )
-                ) : null}
               </ListItem>
-
-              {/* SubMenu Handling */}
-              {menu.subMenu && (
-                <Collapse in={openSubMenu[index]} timeout="auto" unmountOnExit>
-                  <List component="div" disablePadding>
-                    {menu.subMenu.map((subMenu, subIndex) => (
-                      <ListItem
-                        button
-                        key={subIndex}
-                        sx={{ pl: 4 }}
-                        onClick={() => handleNavigation(subMenu.path)} // Navigate to submenu path
-                      >
-                        <ListItemIcon>{subMenu.icon}</ListItemIcon>
-                        {isOpen && <ListItemText primary={subMenu.title} />}
-                      </ListItem>
-                    ))}
-                  </List>
-                </Collapse>
-              )}
             </div>
           ))}
         </List>

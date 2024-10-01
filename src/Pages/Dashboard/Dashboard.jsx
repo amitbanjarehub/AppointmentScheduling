@@ -15,8 +15,10 @@ import SearchField from "../../components/SearchBox/SearchBox";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import EventCalender from "../../components/EventScheduleCalender/EventCalender";
+import EventCards from "../Cards/EventCards";
 
-const Dashboard = () => {
+const Dashboard = () => {  
+
   return (
     <Stack sx={{ height: "100vh" }}>
       <Stack
@@ -45,7 +47,7 @@ const Dashboard = () => {
               sm: "column",
               xs: "column",
             },
-            justifyContent: "space-between",           
+            justifyContent: "space-between",
             width: { xl: "40%", lg: "40%", md: "40%", sm: "100%", xs: "100%" },
           }}
         >
@@ -64,7 +66,7 @@ const Dashboard = () => {
         alignItems="center"
         sx={{
           padding: "16px",
-          borderBottom: "1px solid #e0e0e0",        
+          borderBottom: "1px solid #e0e0e0",
           width: { xl: "60%", lg: "60%", md: "60%", sm: "100%", xs: "100%" },
           marginLeft: "72px",
           marginBottom: "40px",
@@ -102,63 +104,8 @@ const Dashboard = () => {
         </Stack>
       </Stack>
 
-      <Card
-        sx={{
-          maxWidth: 365,
-          borderRadius: "8px",
-          boxShadow: 2,
-          marginLeft: "80px",
-        }}
-      >
-        {/* Top Bar with Border and Settings Icon */}
-        <Box sx={{ height: "5px", backgroundColor: "#9c27b0" }} />
-        <CardContent>
-          <Stack
-            direction="row"
-            justifyContent="space-between"
-            alignItems="flex-start"
-          >
-            {/* Event Info */}
-            <Box>
-              <Typography variant="h6">Atmik Bharat</Typography>
-              <Typography variant="body2" color="text.secondary">
-                30 mins, One-on-One
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  color: "blue",
-                  textDecoration: "underline",
-                  cursor: "pointer",
-                  mt: 1,
-                }}
-              >
-                View booking page
-              </Typography>
-            </Box>
-            {/* Settings Icon */}
-            <IconButton>
-              <SettingsIcon />
-            </IconButton>
-          </Stack>
-        </CardContent>
-        <Box sx={{ borderTop: "1px solid #e0e0e0", padding: "8px 16px" }}>
-          <Stack direction="row" justifyContent="space-between">
-            <Button
-              variant="outlined"
-              startIcon={<ContentCopyIcon />}
-              sx={{ textTransform: "none" }}
-            >
-              Copy link
-            </Button>
-            <Button variant="outlined" sx={{ textTransform: "none" }}>
-              Share
-            </Button>
-          </Stack>
-        </Box>
-      </Card>
+      <EventCards />
 
-      {/* <EventCalender /> */}
     </Stack>
   );
 };
