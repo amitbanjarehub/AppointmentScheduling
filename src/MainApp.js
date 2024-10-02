@@ -22,6 +22,8 @@ import CustomFormBuilderOriginal from "./components/FormBulider-RenderComponent/
 import CustomMergeformRender from "./components/FormBulider-RenderComponent/TestingFormBuilding/MergeformRender";
 import CalenderIntegation from "./Pages/CalenderScheduling/CalenderIntegation";
 import MainCalenderIntegration from "./Pages/CalenderScheduling/MainCalenderIntegration";
+import WorkingTimeSetting from "./Pages/WorkingTimeSetting/WorkingTimeSetting";
+import WeeklyHourSetting from "./Pages/WorkingTimeSetting/WeeklyHourSetting";
 
 const MainApp = () => {
   return (
@@ -45,7 +47,11 @@ const MainApp = () => {
             <Route path="/event-type" element={<EventType />} />
             <Route path="/categories" element={<Categories />} />
             <Route path="/orders" element={<Categories />} />
-            <Route path="/customers" element={<Categories />} />
+            <Route path="/weekly-hour-setting" element={<WeeklyHourSetting />} />
+            <Route
+              path="/availability-time-setting"
+              element={<WorkingTimeSetting />}
+            />
             <Route path="/settings" element={<Categories />} />
             <Route path="/event-calender" element={<EventCalender />} />
             <Route path="/exam" element={<MCQExam />} />

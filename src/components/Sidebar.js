@@ -31,6 +31,7 @@ import RouteIcon from "@mui/icons-material/Route";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import HelpIcon from "@mui/icons-material/Help";
+import EngineeringIcon from "@mui/icons-material/Engineering";
 
 // Array for menu items
 const menuItems = [
@@ -38,8 +39,7 @@ const menuItems = [
     title: "Event types",
     icon: <InsertLinkIcon sx={{ color: "black" }} />,
     path: "/event-types",
-  },
-
+  }, 
   {
     title: "Meetings",
     icon: <Diversity3Icon sx={{ color: "black" }} />,
@@ -48,7 +48,7 @@ const menuItems = [
   {
     title: "Availability",
     icon: <AlarmOnIcon sx={{ color: "black" }} />,
-    path: "/customers",
+    path: "/availability-time-setting",
   },
   {
     title: "Contacts",
