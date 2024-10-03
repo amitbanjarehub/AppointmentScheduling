@@ -24,6 +24,7 @@ import {
 } from "@mui/material";
 
 import WeeklyHourSetting from "./WeeklyHourSetting";
+import SpecialDateSetting from "./SpecialDateSetting";
 
 // Initialize moment localizer for the calendar
 const localizer = momentLocalizer(moment);
@@ -157,7 +158,9 @@ const WorkingTimeSetting = () => {
             <Stack sx={{ width: "50%", border: "1px solid gray" }}>
               <WeeklyHourSetting />
             </Stack>
-            <Stack sx={{ width: "50%", border: "1px solid gray" }}>2</Stack>
+            <Stack sx={{ width: "50%", border: "1px solid gray" }}>
+              <SpecialDateSetting />
+            </Stack>
           </Stack>
         )}
       </Box>
