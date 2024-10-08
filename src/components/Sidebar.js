@@ -62,7 +62,7 @@ const menuItems = [
   {
     title: "Integration & Apps",
     icon: <ManageHistoryIcon sx={{ color: "black" }} />,
-    path: "/settings",
+    path: "/calender-integration",
   },
   {
     title: "Routing",

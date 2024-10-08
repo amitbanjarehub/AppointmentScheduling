@@ -24,6 +24,8 @@ import CalenderIntegation from "./Pages/CalenderScheduling/CalenderIntegation";
 import MainCalenderIntegration from "./Pages/CalenderScheduling/MainCalenderIntegration";
 import WorkingTimeSetting from "./Pages/WorkingTimeSetting/WorkingTimeSetting";
 import WeeklyHourSetting from "./Pages/WorkingTimeSetting/WeeklyHourSetting";
+import Calendar from "./components/ScratchCalendar/Calendar";
+
 
 const MainApp = () => {
   return (
@@ -44,6 +46,7 @@ const MainApp = () => {
               path="/calender-integration"
               element={<CalenderIntegation />}
             />
+             <Route path="/scratch-calendar" element={<Calendar />} />
             <Route path="/event-type" element={<EventType />} />
             <Route path="/categories" element={<Categories />} />
             <Route path="/orders" element={<Categories />} />
@@ -52,6 +55,7 @@ const MainApp = () => {
               path="/availability-time-setting"
               element={<WorkingTimeSetting />}
             />
+           
             <Route path="/settings" element={<Categories />} />
             <Route path="/event-calender" element={<EventCalender />} />
             <Route path="/exam" element={<MCQExam />} />

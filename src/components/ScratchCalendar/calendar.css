@@ -1,0 +1,106 @@
+.calendar {
+  width: 100%;
+  max-width: 900px; /* Ensure maximum width for desktop */
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.calendar-header {
+  width: 100%;
+  height: 50px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title h2 {
+  margin: 0;
+}
+
+.tools {
+  display: flex;
+  align-items: center;
+}
+
+.tools button {
+  margin: 0 10px;
+  background: none;
+  border: none;
+}
+
+.calendar-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.table-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /* Ensure 7 columns for the weekdays */
+  gap: 10px;
+}
+
+.weekday {
+  text-align: center;
+  font-weight: bold;
+}
+
+.table-content {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /* 7 columns for the days */
+  grid-auto-rows: 1fr; /* Even row height to ensure consistency */
+  gap: 10px;
+  width: 100%;
+}
+
+.calendar-day {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 10px;
+  border: 1px solid #a6a6a6;
+  height: 100px; /* Default height for the day boxes */
+  text-align: center;
+  position: relative;
+
+}
+
+.calendar-day p {
+  margin: 0;
+  font-size: 14px;
+  color: #a6a6a6;
+}
+
+.current p {
+  color: #000000;
+}
+
+.selected p {
+  color: #cc0000;
+  font-weight: bold;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+  .calendar {
+    max-width: 100%;
+    padding: 0 15px;
+  }
+
+  .calendar-day {
+    height: 80px; /* Adjust the height for mobile */
+  }
+
+  .table-header,
+  .table-content {
+    grid-template-columns: repeat(
+      7,
+      1fr
+    ); /* Ensure 7 columns in mobile as well */
+    gap: 5px; /* Smaller gaps for mobile */
+  }
+}

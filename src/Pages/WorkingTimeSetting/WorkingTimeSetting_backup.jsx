@@ -25,7 +25,6 @@ import {
 
 import WeeklyHourSetting from "./WeeklyHourSetting";
 import SpecialDateSetting from "./SpecialDateSetting";
-import CustomCalender from "./CustomCalender";
 
 // Initialize moment localizer for the calendar
 const localizer = momentLocalizer(moment);
@@ -99,7 +98,7 @@ const WorkingTimeSetting = () => {
           <Button variant="contained" size="small">
             Working hours
           </Button>
-
+         
           <Button variant="outlined" size="small" onClick={handleOpenDialog}>
             Create schedule
           </Button>
@@ -132,8 +131,15 @@ const WorkingTimeSetting = () => {
       {/* Conditional rendering based on the view */}
       <Box sx={{ marginTop: 3 }}>
         {view === "month" ? (
-         
-          <CustomCalender />
+          <Calendar
+            localizer={localizer}
+            events={events}
+            startAccessor="start"
+            endAccessor="end"
+            defaultView="month"
+            views={["month"]}
+            style={{ height: 500 }}
+          />
         ) : (
           // <WeeklyHourSetting />
           <Stack
